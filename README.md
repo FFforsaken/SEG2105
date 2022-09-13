@@ -1,4 +1,4 @@
-# SEG2105
+# SEG2105  Group-6
 SEG2105 B03
 
 Name/Username/Student /# Profile links
