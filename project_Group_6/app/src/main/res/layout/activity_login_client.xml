@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:background="@color/Azure"
+    tools:context=".LoginActivityClient">
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sign in as a Client"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        android:typeface="sans"
+        android:textColor="@color/black"
+        android:gravity="center_horizontal"
+        />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_title"
+        android:layout_marginTop="20dp"
+        app:cardCornerRadius="10dp">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_below="@+id/tv_title"
+            android:background="@drawable/logo"/>
+    </androidx.cardview.widget.CardView>
+
+
+
+    <EditText
+        android:id="@+id/et_account_client"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/card_view"
+        android:hint="Enter your username"
+        android:textSize="25sp"
+        android:drawableStart="@drawable/ic_account"
+        android:drawablePadding="10dp"
+        android:textColor="@color/DeepSkyBlue"
+
+        android:inputType="number"
+        android:padding="10dp"
+        android:layout_marginTop="20dp" />
+
+    <EditText
+        android:id="@+id/et_password_client"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/et_account_client"
+        android:hint="Enter your password"
+        android:textSize="25sp"
+        android:drawableStart="@drawable/ic_password"
+        android:drawablePadding="10dp"
+        android:textColor="@color/DeepSkyBlue"
+
+        android:inputType="textPassword"
+        android:padding="10dp"
+        android:layout_marginTop="20dp" />
+
+    <TextView
+        android:id="@+id/tv_register_client"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign up"
+        android:textSize="20sp"
+        android:textColor="@color/SpringGreen"
+        android:layout_below="@id/et_password_client"
+        android:layout_marginTop="20dp"
+        android:layout_alignParentRight="true"/>
+
+    <Button
+        android:id="@+id/btn_login_client"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/tv_register_client"
+        android:text="Login"
+        android:typeface="monospace"
+        android:textSize="25sp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bg_button" />
+
+</RelativeLayout>

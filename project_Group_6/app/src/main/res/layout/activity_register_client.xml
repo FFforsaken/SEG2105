@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    tools:context=".RegisterActivity_client">
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sign in "
+        android:textSize="40sp"
+        android:textStyle="bold"
+        android:typeface="sans"
+        android:textColor="@color/black"
+        android:gravity="center_horizontal"
+         />
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_title"
+        android:layout_marginTop="20dp"
+        app:cardCornerRadius="10dp">
+
+    </androidx.cardview.widget.CardView>
+    <EditText
+        android:id="@+id/et_firstname_client"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+
+        android:hint="First name"
+        android:textSize="20sp"
+        android:drawableStart="@drawable/ic_account"
+        android:drawablePadding="10dp"
+        android:textColor="@color/DeepSkyBlue"
+        android:inputType="number"
+        android:padding="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/card_view"
+        />
+    <EditText
+        android:id="@+id/et_lastname_client"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Last name"
+        android:textSize="20sp"
+        android:drawableStart="@drawable/ic_account"
+        android:drawablePadding="10dp"
+        android:textColor="@color/DeepSkyBlue"
+        android:inputType="number"
+        android:padding="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/et_firstname_client"/>
+
+    <EditText
+        android:id="@+id/et_account_client"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Email address"
+        android:textSize="20sp"
+        android:drawableStart="@drawable/ic_account"
+        android:drawablePadding="10dp"
+        android:textColor="@color/DeepSkyBlue"
+        android:inputType="number"
+        android:padding="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/et_lastname_client"/>
+
+    <EditText
+        android:id="@+id/et_password_client"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/et_account_client"
+        android:hint="Password"
+        android:textSize="20sp"
+        android:drawableStart="@drawable/ic_password"
+        android:drawablePadding="10dp"
+        android:textColor="@color/DeepSkyBlue"
+
+        android:inputType="textPassword"
+        android:padding="10dp"
+        android:layout_marginTop="20dp" />
+
+
+    <EditText
+        android:id="@+id/et_creditinfo"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+
+        android:hint="Enter your credit card information"
+        android:textSize="20sp"
+
+        android:drawablePadding="10dp"
+        android:textColor="@color/DeepSkyBlue"
+        android:inputType="textPassword"
+        android:padding="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/et_password_client"/>
+    <EditText
+        android:id="@+id/et_address_client"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/et_creditinfo"
+        android:hint="Enter your address"
+        android:textSize="20sp"
+
+        android:drawablePadding="10dp"
+        android:textColor="@color/DeepSkyBlue"
+        android:inputType="textPassword"
+        android:padding="10dp"
+        android:layout_marginTop="20dp"
+        />
+    <LinearLayout
+        android:id="@+id/linear"
+        android:orientation="horizontal"
+        android:layout_below="@id/et_address_client"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp">
+        <Button
+            android:id="@+id/btn_register_client"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Regist"
+            android:textStyle="bold"
+            android:typeface="monospace"
+            android:textSize="25sp"
+            android:layout_marginRight="10dp"
+             />
+
+        <Button
+            android:id="@+id/btn_cancel_client"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Cancel"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:typeface="monospace" />
+    </LinearLayout>
+
+
+</RelativeLayout>
