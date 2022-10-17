@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,7 +31,7 @@ public class LoginActivityClient extends AppCompatActivity {
 
         btnLogin = findViewById(R.id.btn_login_client);
         tvRegister = findViewById(R.id.tv_register_client);
-        etAccount = findViewById(R.id.et_account_client);
+        etAccount = findViewById(R.id.et_user_name_client);
         etPassword = findViewById(R.id.et_password_client);
 
 
@@ -45,5 +44,4 @@ public class LoginActivityClient extends AppCompatActivity {
             }
         });
     }
-
 }

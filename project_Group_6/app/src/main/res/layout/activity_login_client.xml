@@ -36,7 +36,7 @@
 
 
     <EditText
-        android:id="@+id/et_account_client"
+        android:id="@+id/et_user_name_client"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_below="@+id/card_view"
@@ -54,7 +54,7 @@
         android:id="@+id/et_password_client"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_below="@+id/et_account_client"
+        android:layout_below="@+id/et_user_name_client"
         android:hint="Enter your password"
         android:textSize="25sp"
         android:drawableStart="@drawable/ic_password"

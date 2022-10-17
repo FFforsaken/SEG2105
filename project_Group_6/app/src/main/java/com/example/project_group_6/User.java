@@ -1,18 +1,41 @@
-
+package com.example.project_group_6;
 
 public abstract class User{
     
     private String first_name;
     private String last_name; 
     private String email_address;
-    private String user_name = email_address;
+    private String user_name ;
     private String account_password;
     private String address;
 
+
+    public User(String email_address, String account_password, String address){
+        this.email_address = email_address;
+        this.user_name = email_address;
+        this.account_password = account_password;
+        this.address = address;
+    }
+
+
+
+    public User(String first_name, String last_name, String user_name, String account_password){
+
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.email_address = user_name;
+        this.user_name = user_name;
+        this.account_password = account_password;
+
+    }
+    
+    
     public User(String first_name, String last_name, String email_address, String account_password, String address){
+
         this.first_name = first_name;
         this.last_name = last_name;
         this.email_address = email_address;
+        this.user_name = email_address;
         this.account_password = account_password;
         this.address = address;
     }

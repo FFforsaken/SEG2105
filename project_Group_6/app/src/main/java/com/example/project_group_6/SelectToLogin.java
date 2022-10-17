@@ -1,27 +1,32 @@
 package com.example.project_group_6;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+
+
 public class SelectToLogin extends AppCompatActivity {
 
 
     private Button btnCook;
     private Button btnClient;
     private TextView title;
+
+    DatabaseReference database_default_administrator_account;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_regist_direction);
+        setContentView(R.layout.activity_main);
         initView();
+        addAdministrator_account();
     }
 
     public void initView(){
@@ -47,4 +52,15 @@ public class SelectToLogin extends AppCompatActivity {
             }
         });
     }
+
+    public void addAdministrator_account(){
+
+        Administrator administrator = new Administrator("Kevin","Wu","kevin_wu","wuwuwu123");
+
+        String username = administrator.get_user_name();
+
+        database_default_administrator_account.child(username).setValue(administrator);
+
+    }
+
 }
