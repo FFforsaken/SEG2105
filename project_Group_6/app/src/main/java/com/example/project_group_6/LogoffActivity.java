@@ -21,6 +21,7 @@ public class LogoffActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(LogoffActivity.this, SelectToLogin.class);
+                startActivity(intent);
             }
         });
     }

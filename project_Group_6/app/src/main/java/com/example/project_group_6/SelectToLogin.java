@@ -19,7 +19,7 @@ public class SelectToLogin extends AppCompatActivity {
     private Button btnCook;
     private Button btnClient;
     private TextView title;
-
+    private Button btnAdmin;
     DatabaseReference database_default_administrator_account;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +35,7 @@ public class SelectToLogin extends AppCompatActivity {
         if (actionBar != null) actionBar.hide();
         btnClient =findViewById(R.id.btnclient);
         btnCook = findViewById(R.id.btncook);
-
+        btnAdmin = findViewById(R.id.btnadmin);
 
         btnCook.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
@@ -52,6 +52,15 @@ public class SelectToLogin extends AppCompatActivity {
                 finish();
             }
         });
+        btnAdmin.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                Intent intent = new Intent(SelectToLogin.this, LoginActivityAdmin.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+
     }
 
     public void addAdministrator_account(){

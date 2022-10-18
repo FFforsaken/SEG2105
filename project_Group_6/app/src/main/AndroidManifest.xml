@@ -20,6 +20,7 @@
         <activity android:name=".LoginActivityCook"/>
         <activity android:name=".RegisterActivity_client"/>
         <activity android:name=".RegisterActivity_cook"/>
+        <activity android:name=".LoginActivityAdmin"/>
         <activity
             android:name =".WelcomeActivity"
             android:exported="true">
