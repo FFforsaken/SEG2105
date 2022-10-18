@@ -109,7 +109,7 @@
 
         android:drawablePadding="10dp"
         android:textColor="@color/DeepSkyBlue"
-        android:inputType="textPassword"
+        android:inputType="text"
         android:padding="10dp"
         android:layout_marginTop="20dp"
         />
@@ -123,7 +123,7 @@
 
         android:drawablePadding="10dp"
         android:textColor="@color/DeepSkyBlue"
-        android:inputType="textPassword"
+        android:inputType="text"
         android:padding="10dp"
         android:layout_marginTop="20dp"
         />

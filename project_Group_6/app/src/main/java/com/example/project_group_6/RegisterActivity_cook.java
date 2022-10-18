@@ -55,6 +55,12 @@ public class RegisterActivity_cook extends AppCompatActivity  {
                 finish();
             }
         });
+        btnRegister.setOnClickListener(new View.OnClickListener(){
+            public void  onClick(View v){
+                addcook_account();
+                finish();
+            }
+        });
     }
 
     public void addcook_account() {

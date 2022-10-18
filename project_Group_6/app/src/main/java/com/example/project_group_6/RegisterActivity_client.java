@@ -68,6 +68,12 @@ public class RegisterActivity_client extends AppCompatActivity {
                 finish();
             }
         });
+        btnRegister.setOnClickListener(new View.OnClickListener(){
+            public void  onClick(View v){
+                addClient_account();
+                finish();
+            }
+        });
     }
 
     //////////////// method to add, update and delete an account from database;

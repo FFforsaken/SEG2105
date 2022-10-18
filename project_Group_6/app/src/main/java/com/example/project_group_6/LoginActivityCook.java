@@ -39,5 +39,13 @@ public class LoginActivityCook extends AppCompatActivity {
                 startActivityForResult(intent,1);
             }
         });
+
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
     }
 }
