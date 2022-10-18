@@ -36,7 +36,7 @@
         android:drawableStart="@drawable/ic_account"
         android:drawablePadding="10dp"
         android:textColor="@color/DeepSkyBlue"
-        android:inputType="number"
+        android:inputType="textPersonName"
         android:padding="10dp"
         android:layout_marginTop="30dp"
         android:layout_below="@+id/card_view"
@@ -50,7 +50,7 @@
         android:drawableStart="@drawable/ic_account"
         android:drawablePadding="10dp"
         android:textColor="@color/DeepSkyBlue"
-        android:inputType="number"
+        android:inputType="textPersonName"
         android:padding="10dp"
         android:layout_marginTop="30dp"
         android:layout_below="@+id/et_firstname_cook"/>
@@ -64,7 +64,7 @@
         android:drawableStart="@drawable/ic_account"
         android:drawablePadding="10dp"
         android:textColor="@color/DeepSkyBlue"
-        android:inputType="number"
+        android:inputType="textEmailAddress"
         android:padding="10dp"
         android:layout_marginTop="30dp"
         android:layout_below="@+id/et_lastname_cook"/>
@@ -94,7 +94,7 @@
         android:layout_marginTop="20dp"
 
         android:drawablePadding="10dp"
-        android:hint="Sacn your cheque"
+        android:hint="Scan your cheque"
         android:inputType="textPassword"
         android:padding="10dp"
         android:textColor="@color/DeepSkyBlue"

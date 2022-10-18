@@ -37,7 +37,7 @@
         android:drawableStart="@drawable/ic_account"
         android:drawablePadding="10dp"
         android:hint="First name"
-        android:inputType="number"
+        android:inputType="textPersonName"
         android:padding="10dp"
         android:textColor="@color/DeepSkyBlue"
         android:textSize="20sp" />
@@ -51,7 +51,7 @@
         android:drawableStart="@drawable/ic_account"
         android:drawablePadding="10dp"
         android:hint="Last name"
-        android:inputType="number"
+        android:inputType="textPersonName"
         android:padding="10dp"
         android:textColor="@color/DeepSkyBlue"
         android:textSize="20sp" />
@@ -65,7 +65,7 @@
         android:drawableStart="@drawable/ic_account"
         android:drawablePadding="10dp"
         android:hint="Email address"
-        android:inputType="number"
+        android:inputType="textEmailAddress"
         android:padding="10dp"
         android:textColor="@color/DeepSkyBlue"
         android:textSize="20sp" />
@@ -127,7 +127,7 @@
         android:layout_marginTop="18dp"
         android:drawablePadding="10dp"
         android:hint="Enter your CVV"
-        android:inputType="textPassword"
+        android:inputType="number"
         android:padding="10dp"
         android:textColor="@color/DeepSkyBlue"
         android:textSize="20sp" />
