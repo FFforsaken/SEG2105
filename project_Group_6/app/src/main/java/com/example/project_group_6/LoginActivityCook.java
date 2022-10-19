@@ -7,15 +7,22 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
 public class LoginActivityCook extends AppCompatActivity {
     private Button btnLogin;
     private EditText etUsername;
     private EditText etPassword;
-    
+    private TextView tvRegist;
     DatabaseReference databaseReference;
     
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,13 +41,21 @@ public class LoginActivityCook extends AppCompatActivity {
         btnLogin = findViewById(R.id.btn_login);
          etUsername = findViewById(R.id.et_account);
         etPassword = findViewById(R.id.et_password);
-
+        tvRegist = findViewById(R.id.tv_register);
 
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Login_Cook();
+            }
+        });
+        tvRegist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivityCook.this, RegisterActivity_cook.class);
+                startActivity(intent);
+                finish();
             }
         });
 
@@ -77,7 +92,7 @@ public class LoginActivityCook extends AppCompatActivity {
 
     }
 
-    public void Login_Client(){
+    public void Login_Cook(){
         if(!validate_username() || !validate_password()){
             return;
         }
@@ -89,7 +104,7 @@ public class LoginActivityCook extends AppCompatActivity {
 
     private void is_Cook() {
 
-        String UserEntered_username = etUsername.getText().toString().trim();
+        String UserEntered_username = etUsername.getText().toString().trim().replace(".","");
         String UserEntered_password = etPassword.getText().toString().trim();
 
 
@@ -106,7 +121,7 @@ public class LoginActivityCook extends AppCompatActivity {
 
                     if (getPasswordfromDB.equals(UserEntered_password)){
                         etPassword.setError(null);
-                        Intent intent = new Intent(LoginActivityClient.this, WelcomeforCook.class);
+                        Intent intent = new Intent(LoginActivityCook.this, WelcomeforCook.class);
                         startActivity(intent);
                         finish();
                     }

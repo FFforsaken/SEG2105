@@ -1,4 +1,5 @@
 package com.example.project_group_6;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -65,12 +66,16 @@ public class RegisterActivity_client extends AppCompatActivity {
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(RegisterActivity_client.this, LoginActivityClient.class);
+                startActivity(intent);
                 finish();
             }
         });
         btnRegister.setOnClickListener(new View.OnClickListener(){
             public void  onClick(View v){
                 addClient_account();
+                Intent intent = new Intent(RegisterActivity_client.this, LoginActivityClient.class);
+                startActivity(intent);
                 finish();
             }
         });
@@ -81,7 +86,7 @@ public class RegisterActivity_client extends AppCompatActivity {
 
         String Firstname = etFirstname.getText().toString().trim();
         String Lastname = etLastname.getText().toString().trim();
-        String Username = etUsername.getText().toString().trim();
+        String Username = etUsername.getText().toString().trim().replace(".","");
         String Password = etPassword.getText().toString().trim();
         Long credit_card_number = Long.parseLong(String.valueOf(et_credit_card_number.getText().toString()));
         String credit_card_expiration_date = et_credit_card_expiration_date.getText().toString().trim();
@@ -92,12 +97,12 @@ public class RegisterActivity_client extends AppCompatActivity {
 
 
         // Create a Product object and save this object
-        String id = database_client_account.push().getKey();
+//        String id = database_client_account.push().getKey();
 
         Client client = new Client(Firstname,Lastname,Username,Password,address_client,credit_card_number,credit_card_expiration_date,CVV);
-//        String username = client.get_user_name();
+        String username = client.get_user_name();
 
-        database_client_account.child(id).setValue(client);
+        database_client_account.child(username).setValue(client);
 
 
         // clear the text boxes
@@ -146,14 +151,6 @@ public class RegisterActivity_client extends AppCompatActivity {
 
 
 
-    private void clickOnRegister() {
 
-        btnRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                addClient_account();
-            }
-        });
-    }
 
 }

@@ -1,4 +1,5 @@
 package com.example.project_group_6;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -52,12 +53,16 @@ public class RegisterActivity_cook extends AppCompatActivity  {
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(RegisterActivity_cook.this, LoginActivityCook.class);
+                startActivity(intent);
                 finish();
             }
         });
         btnRegister.setOnClickListener(new View.OnClickListener(){
             public void  onClick(View v){
                 addcook_account();
+                Intent intent = new Intent(RegisterActivity_cook.this, LoginActivityCook.class);
+                startActivity(intent);
                 finish();
             }
         });
@@ -67,7 +72,7 @@ public class RegisterActivity_cook extends AppCompatActivity  {
 
         String Firstname = etFirstname.getText().toString().trim();
         String Lastname = etLastname.getText().toString().trim();
-        String Username = etUsername.getText().toString().trim();
+        String Username = etUsername.getText().toString().trim().replace(".","");
         String Password = etPassword.getText().toString().trim();
         String address_cook = et_address_cook.getText().toString().trim();
 

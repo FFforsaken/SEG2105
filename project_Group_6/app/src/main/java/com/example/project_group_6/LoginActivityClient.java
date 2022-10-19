@@ -7,8 +7,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
 public class LoginActivityClient extends AppCompatActivity {
@@ -16,7 +23,7 @@ public class LoginActivityClient extends AppCompatActivity {
     private Button btnLogin;
     private EditText etUsername;
     private EditText etPassword;
-
+    private TextView tvRegist;
 
     DatabaseReference databaseReference;
     
@@ -33,7 +40,7 @@ public class LoginActivityClient extends AppCompatActivity {
 
 
         btnLogin = findViewById(R.id.btn_login_client);
-
+        tvRegist = findViewById(R.id.tv_register_client);
         etUsername = findViewById(R.id.et_user_name_client);
         etPassword = findViewById(R.id.et_password_client);
 
@@ -41,9 +48,18 @@ public class LoginActivityClient extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                Login_Admin();
+                Login_Client();
             }
         });
+        tvRegist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivityClient.this, RegisterActivity_client.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
     
     }
 
@@ -90,7 +106,7 @@ public class LoginActivityClient extends AppCompatActivity {
     
     private void is_Client() {
 
-        String UserEntered_username = etUsername.getText().toString().trim();
+        String UserEntered_username = etUsername.getText().toString().trim().replace(".","");
         String UserEntered_password = etPassword.getText().toString().trim();
 
 
