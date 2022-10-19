@@ -26,13 +26,13 @@ public class LoginActivityAdmin extends AppCompatActivity {
 
 
 
-    DatabaseReference database_Administrator_account;
+    DatabaseReference databaseReference;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_admin);
         initView();
-        database_Administrator_account = FirebaseDatabase.getInstance().getReference("Administrator_accounts");
+        databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://project-group-6-c1e1f-default-rtdb.firebaseio.com/");
 
 
 
@@ -51,7 +51,7 @@ public class LoginActivityAdmin extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                is_Admin();
+                Login_Admin();
             }
         });
 
@@ -110,19 +110,19 @@ public class LoginActivityAdmin extends AppCompatActivity {
         String UserEntered_username = etUsername.getText().toString().trim();
         String UserEntered_password = etPassword.getText().toString().trim();
 
-        Query checkAdmin = database_Administrator_account.orderByChild("_user_name").equalTo(UserEntered_username);
 
-        checkAdmin.addListenerForSingleValueEvent(new ValueEventListener() {
+
+        databaseReference.child("Administrator_accounts").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.exists()){
+                if (dataSnapshot.hasChild(UserEntered_username)){
 
                     etUsername.setError(null);
 
 
-                    String passwordFromDB = dataSnapshot.child("_user_name").child("_account_password").getValue(String.class);
+                    final String getPasswordfromDB = dataSnapshot.child(UserEntered_username).child("account_password").getValue(String.class);
 
-                    if (passwordFromDB.equals(UserEntered_password)){
+                    if (getPasswordfromDB.equals(UserEntered_password)){
                         etPassword.setError(null);
                         Intent intent = new Intent(LoginActivityAdmin.this, administrator_main_Activity.class);
                         startActivity(intent);
