@@ -21,7 +21,7 @@ public class SelectToLogin extends AppCompatActivity {
     private TextView title;
     private Button btnAdmin;
     DatabaseReference database_default_administrator_account;
-    private int time = 0;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,10 +29,7 @@ public class SelectToLogin extends AppCompatActivity {
         database_default_administrator_account = FirebaseDatabase.getInstance().getReference("Administrator_accounts");
         initView();
 
-        if (time == 0){
-            addAdministrator_account();
-            time++;
-        }
+        addAdministrator_account();
 
     }
 

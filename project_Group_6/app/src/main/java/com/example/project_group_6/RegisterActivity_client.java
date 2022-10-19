@@ -93,8 +93,48 @@ public class RegisterActivity_client extends AppCompatActivity {
         int CVV = Integer.parseInt(String.valueOf(etCVV.getText().toString()));
         String address_client = et_address_client.getText().toString().trim();
 
+        if(Firstname.isEmpty()){
+            etFirstname.setError("CANT BE EMPTY!");
+            etFirstname.requestFocus();
+            return;
+        }
+        if(Lastname.isEmpty()){
+            etFirstname.setError("CANT BE EMPTY!");
+            etFirstname.requestFocus();
+            return;
+        }
+        if(Username.isEmpty()){
+            etFirstname.setError("CANT BE EMPTY!");
+            etFirstname.requestFocus();
+            return;
+        }
+        if(Password.isEmpty()){
+            etFirstname.setError("CANT BE EMPTY!");
+            etFirstname.requestFocus();
+            return;
+        }
+        if(credit_card_number.toString().isEmpty() ||  credit_card_number.toString().length() != 16){
+            etFirstname.setError("Invalid Input!");
+            etFirstname.requestFocus();
+            return;
+        }
 
+        if(credit_card_expiration_date.isEmpty() || credit_card_expiration_date.length() != 5 || credit_card_expiration_date.contains("/")){
+            etFirstname.setError("Invalid Input!");
+            etFirstname.requestFocus();
+            return;
+        }
+        if(String.valueOf(CVV).isEmpty() || String.valueOf(CVV).length() != 3){
+            etFirstname.setError("Invalid Input!");
+            etFirstname.requestFocus();
+            return;
+        }
 
+        if(address_client.isEmpty()){
+            etFirstname.setError("CANT BE EMPTY!");
+            etFirstname.requestFocus();
+            return;
+        }
 
         // Create a Product object and save this object
 //        String id = database_client_account.push().getKey();

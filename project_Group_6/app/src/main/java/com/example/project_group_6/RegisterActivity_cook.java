@@ -76,6 +76,35 @@ public class RegisterActivity_cook extends AppCompatActivity  {
         String Password = etPassword.getText().toString().trim();
         String address_cook = et_address_cook.getText().toString().trim();
 
+
+        ///////////////////////////////////////////////////////////////////////////////////////////
+        if(Firstname.isEmpty()){
+            etFirstname.setError("CANT BE EMPTY!");
+            etFirstname.requestFocus();
+            return;
+        }
+        if(Lastname.isEmpty()){
+            etFirstname.setError("CANT BE EMPTY!");
+            etFirstname.requestFocus();
+            return;
+        }
+        if(Username.isEmpty()){
+            etFirstname.setError("CANT BE EMPTY!");
+            etFirstname.requestFocus();
+            return;
+        }
+        if(Password.isEmpty()){
+            etFirstname.setError("CANT BE EMPTY!");
+            etFirstname.requestFocus();
+            return;
+        }
+        if(address_cook.isEmpty()){
+            etFirstname.setError("CANT BE EMPTY!");
+            etFirstname.requestFocus();
+            return;
+        }
+
+
         // String id = database_cook_account.push().getKey();
         Cook cook =new Cook(Firstname,Lastname,Username,Password,address_cook);
 
@@ -119,12 +148,6 @@ public class RegisterActivity_cook extends AppCompatActivity  {
 //
 //        return true;
 //    }
-
-
-
-
-
-
 
 
 
