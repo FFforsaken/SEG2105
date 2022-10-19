@@ -15,11 +15,13 @@ public class administrator_main_Activity extends AppCompatActivity {
     }
 
     public void initView(){
+        btn_logout_admin = findViewById(R.id.btn_logout_admin);
         btn_logout_admin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(administrator_main_Activity.this, SelectToLogin.class);
                 startActivity(intent);
+                finish();
             }
         });
     }

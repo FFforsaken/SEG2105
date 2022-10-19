@@ -70,12 +70,12 @@ public class SelectToLogin extends AppCompatActivity {
     }
 
     public void addAdministrator_account(){
-        String id =  database_default_administrator_account.push().getKey();
+//        String id =  database_default_administrator_account.push().getKey();
         Administrator administrator = new Administrator("Kevin","Wu","kevin_wu","wuwuwu123");
 
-//        String username = administrator.get_user_name();
+        String username = administrator.get_user_name();
 
-        database_default_administrator_account.child(id).setValue(administrator);
+        database_default_administrator_account.child(username).setValue(administrator);
 
     }
 

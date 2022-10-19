@@ -120,11 +120,11 @@ public class LoginActivityAdmin extends AppCompatActivity {
                     etUsername.setError(null);
 
 
-                    final String getPasswordfromDB = dataSnapshot.child(UserEntered_username).child("account_password").getValue(String.class);
+                    final String getPasswordfromDB = dataSnapshot.child(UserEntered_username).child("_account_password").getValue(String.class);
 
                     if (getPasswordfromDB.equals(UserEntered_password)){
                         etPassword.setError(null);
-                        Intent intent = new Intent(LoginActivityAdmin.this, administrator_main_Activity.class);
+                        Intent intent = new Intent(LoginActivityAdmin.this, WelcomeforAdmin.class);
                         startActivity(intent);
                         finish();
                     }

@@ -7,12 +7,12 @@ import android.os.Handler;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class WelcomeforCook extends AppCompatActivity {
+public class WelcomeforAdmin extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_welcome_for_cook);
+        setContentView(R.layout.activity_welcome_for_administrator);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.hide();
@@ -21,7 +21,7 @@ public class WelcomeforCook extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(WelcomeforCook.this, administrator_main_Activity.class);
+                Intent intent = new Intent(WelcomeforAdmin.this, administrator_main_Activity.class);
                 startActivity(intent);
                 finish();
             }
@@ -30,3 +30,4 @@ public class WelcomeforCook extends AppCompatActivity {
 
 
 }
+

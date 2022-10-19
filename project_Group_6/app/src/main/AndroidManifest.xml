@@ -21,6 +21,10 @@
         <activity android:name=".RegisterActivity_client"/>
         <activity android:name=".RegisterActivity_cook"/>
         <activity android:name=".LoginActivityAdmin"/>
+        <activity android:name=".WelcomeforClient"/>
+        <activity android:name=".administrator_main_Activity"/>
+        <activity android:name=".WelcomeforAdmin"/>
+        <activity android:name=".WelcomeforCook"/>
         <activity
             android:name =".WelcomeActivity"
             android:exported="true">
