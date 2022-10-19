@@ -29,7 +29,7 @@ public class RegisterActivity_cook extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_cook);
         initView();
-        database_cook_account = FirebaseDatabase.getInstance().getReference("cook_account");
+        database_cook_account = FirebaseDatabase.getInstance().getReference("cook_accounts");
     }
     public void initView() {
 
@@ -71,11 +71,12 @@ public class RegisterActivity_cook extends AppCompatActivity  {
         String Password = etPassword.getText().toString().trim();
         String address_cook = et_address_cook.getText().toString().trim();
 
+        String id = database_cook_account.push().getKey();
         Cook cook =new Cook(Firstname,Lastname,Username,Password,address_cook);
 
-        String username = cook.get_user_name();
+//        String username = cook.get_user_name();
 
-        database_cook_account.child(username).setValue(cook);
+        database_cook_account.child(id).setValue(cook);
 
         etFirstname.setText("");
         etLastname.setText("");
@@ -88,31 +89,31 @@ public class RegisterActivity_cook extends AppCompatActivity  {
 
     }
 
-    private void updateCook_account_info(String first_name, String last_name, String email_address, String account_password, String address) {
-
-
-
-        DatabaseReference dR = FirebaseDatabase.getInstance().getReference("cook_account").child(email_address);
-
-        // update the product by using setValue()
-        Cook cook = new Cook(first_name,last_name,email_address,account_password,address);
-        dR.setValue(cook);
-
-        Toast.makeText(getApplicationContext(), "Updated successfully", Toast.LENGTH_LONG).show();
-
-
-    }
-
-    private boolean deletecook_account(String username) {
-
-        DatabaseReference dR = FirebaseDatabase.getInstance().getReference("cook_account").child(username);
-
-        dR.removeValue();
-
-        Toast.makeText(getApplicationContext(), "Account Deleted successfully", Toast.LENGTH_LONG).show();
-
-        return true;
-    }
+//    private void updateCook_account_info(String first_name, String last_name, String email_address, String account_password, String address) {
+//
+//
+//
+//        DatabaseReference dR = FirebaseDatabase.getInstance().getReference("cook_account").child(email_address);
+//
+//        // update the product by using setValue()
+//        Cook cook = new Cook(first_name,last_name,email_address,account_password,address);
+//        dR.setValue(cook);
+//
+//        Toast.makeText(getApplicationContext(), "Updated successfully", Toast.LENGTH_LONG).show();
+//
+//
+//    }
+//
+//    private boolean deletecook_account(String username) {
+//
+//        DatabaseReference dR = FirebaseDatabase.getInstance().getReference("cook_account").child(username);
+//
+//        dR.removeValue();
+//
+//        Toast.makeText(getApplicationContext(), "Account Deleted successfully", Toast.LENGTH_LONG).show();
+//
+//        return true;
+//    }
 
 
 

@@ -42,7 +42,7 @@ public class RegisterActivity_client extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_client);
         initView();
-        database_client_account = FirebaseDatabase.getInstance().getReference("client_account");
+        database_client_account = FirebaseDatabase.getInstance().getReference("client_accounts");
     }
     public void initView() {
 
@@ -92,12 +92,12 @@ public class RegisterActivity_client extends AppCompatActivity {
 
 
         // Create a Product object and save this object
-//      String id = database_client_account.push().getKey();
+        String id = database_client_account.push().getKey();
 
         Client client = new Client(Firstname,Lastname,Username,Password,address_client,credit_card_number,credit_card_expiration_date,CVV);
-        String username = client.get_user_name();
+//        String username = client.get_user_name();
 
-        database_client_account.child(username).setValue(client);
+        database_client_account.child(id).setValue(client);
 
 
         // clear the text boxes
@@ -117,32 +117,32 @@ public class RegisterActivity_client extends AppCompatActivity {
 //            Toast.makeText(this, "Please enter a name",Toast.LENGTH_LONG).show();
 //        }
     }
-
-    private void updateClient_account_info(String first_name, String last_name, String email_address, String account_password, String address, long credit_card_number, String credit_card_expiration_date, int CVV) {
-
-
-
-        DatabaseReference dR = FirebaseDatabase.getInstance().getReference("client_account").child(email_address);
-
-        // update the product by using setValue()
-        Client client = new Client(first_name,last_name,email_address,account_password,address,credit_card_number,credit_card_expiration_date,CVV);
-        dR.setValue(client);
-
-        Toast.makeText(getApplicationContext(), "Updated successfully", Toast.LENGTH_LONG).show();
-
-
-    }
-
-    private boolean deleteClient_account(String username) {
-
-        DatabaseReference dR = FirebaseDatabase.getInstance().getReference("client_account").child(username);
-
-        dR.removeValue();
-
-        Toast.makeText(getApplicationContext(), "Account Deleted successfully", Toast.LENGTH_LONG).show();
-
-        return true;
-    }
+//
+//    private void updateClient_account_info(String first_name, String last_name, String email_address, String account_password, String address, long credit_card_number, String credit_card_expiration_date, int CVV) {
+//
+//
+//
+//        DatabaseReference dR = FirebaseDatabase.getInstance().getReference("client_account").child(email_address);
+//
+//        // update the product by using setValue()
+//        Client client = new Client(first_name,last_name,email_address,account_password,address,credit_card_number,credit_card_expiration_date,CVV);
+//        dR.setValue(client);
+//
+//        Toast.makeText(getApplicationContext(), "Updated successfully", Toast.LENGTH_LONG).show();
+//
+//
+//    }
+//
+//    private boolean deleteClient_account(String username) {
+//
+//        DatabaseReference dR = FirebaseDatabase.getInstance().getReference("client_account").child(username);
+//
+//        dR.removeValue();
+//
+//        Toast.makeText(getApplicationContext(), "Account Deleted successfully", Toast.LENGTH_LONG).show();
+//
+//        return true;
+//    }
 
 
 

@@ -6,17 +6,18 @@
     android:padding="10dp"
     android:background="@color/Azure"
     tools:context=".LoginActivityAdmin">
+
+
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Sign in as a Admin"
+        android:gravity="center_horizontal"
+        android:text="Log in as a Admin"
+        android:textColor="@color/black"
         android:textSize="40sp"
         android:textStyle="bold"
-        android:typeface="sans"
-        android:textColor="@color/black"
-        android:gravity="center_horizontal"
-        />
+        android:typeface="sans" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view"
@@ -26,8 +27,13 @@
         android:layout_marginTop="20dp"
         app:cardCornerRadius="10dp">
 
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="258dp"
+            android:layout_below="@+id/tv_title"
+            android:background="@drawable/logo" />
     </androidx.cardview.widget.CardView>
-
 
 
     <EditText
@@ -35,42 +41,40 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_below="@+id/card_view"
-        android:hint="Enter your username"
-        android:textSize="25sp"
+        android:layout_marginTop="40dp"
         android:drawableStart="@drawable/ic_account"
         android:drawablePadding="10dp"
-        android:textColor="@color/DeepSkyBlue"
-
+        android:hint="Enter your username"
         android:inputType="number"
+
         android:padding="10dp"
-        android:layout_marginTop="20dp" />
+        android:textColor="@color/DeepSkyBlue"
+        android:textSize="25sp" />
 
     <EditText
         android:id="@+id/et_password_admin"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_below="@+id/et_account_admin"
-        android:hint="Enter your password"
-        android:textSize="25sp"
+        android:layout_marginTop="31dp"
         android:drawableStart="@drawable/ic_password"
         android:drawablePadding="10dp"
-        android:textColor="@color/DeepSkyBlue"
-
+        android:hint="Enter your password"
         android:inputType="textPassword"
+
         android:padding="10dp"
-        android:layout_marginTop="20dp" />
-
-
+        android:textColor="@color/DeepSkyBlue"
+        android:textSize="25sp" />
 
     <Button
         android:id="@+id/btn_login_admin"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_below="@+id/et_password_admin"
+        android:layout_marginTop="59dp"
+        android:background="@drawable/bg_button"
         android:text="Login"
-        android:typeface="monospace"
         android:textSize="25sp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/bg_button" />
+        android:typeface="monospace" />
 
 </RelativeLayout>

@@ -21,13 +21,19 @@ public class SelectToLogin extends AppCompatActivity {
     private TextView title;
     private Button btnAdmin;
     DatabaseReference database_default_administrator_account;
+    private int time = 0;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        database_default_administrator_account = FirebaseDatabase.getInstance().getReference("Administrator_account");
+        database_default_administrator_account = FirebaseDatabase.getInstance().getReference("Administrator_accounts");
         initView();
-        addAdministrator_account();
+
+        if (time == 0){
+            addAdministrator_account();
+            time++;
+        }
+
     }
 
     public void initView(){

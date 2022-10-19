@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/bg_welcome">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/btn_logout_client"
+            android:layout_width="104dp"
+            android:layout_height="52dp"
+            android:text="Logout"
+            tools:layout_editor_absoluteX="144dp"
+            tools:layout_editor_absoluteY="339dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
