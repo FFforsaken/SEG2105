@@ -110,7 +110,7 @@ public class LoginActivityAdmin extends AppCompatActivity {
         String UserEntered_username = etUsername.getText().toString().trim();
         String UserEntered_password = etPassword.getText().toString().trim();
 
-        Query checkAdmin = database_Administrator_account.orderByChild("user_name").equalTo(UserEntered_username);
+        Query checkAdmin = database_Administrator_account.orderByChild("_user_name").equalTo(UserEntered_username);
 
         checkAdmin.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -120,7 +120,7 @@ public class LoginActivityAdmin extends AppCompatActivity {
                     etUsername.setError(null);
 
 
-                    String passwordFromDB = dataSnapshot.child(UserEntered_username).child("account_password").getValue(String.class);
+                    String passwordFromDB = dataSnapshot.child("_user_name").child("_account_password").getValue(String.class);
 
                     if (passwordFromDB.equals(UserEntered_password)){
                         etPassword.setError(null);

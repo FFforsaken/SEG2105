@@ -45,7 +45,7 @@
         android:drawableStart="@drawable/ic_account"
         android:drawablePadding="10dp"
         android:hint="Enter your username"
-        android:inputType="number"
+        android:inputType="textEmailAddress"
 
         android:padding="10dp"
         android:textColor="@color/DeepSkyBlue"

@@ -12,7 +12,7 @@ public class WelcomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_client_main);
+        setContentView(R.layout.activity_welcome);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.hide();
