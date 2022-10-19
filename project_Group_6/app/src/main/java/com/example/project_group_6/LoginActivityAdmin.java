@@ -37,6 +37,7 @@ public class LoginActivityAdmin extends AppCompatActivity {
 
 
     }
+    
     public void initView(){
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) actionBar.hide();

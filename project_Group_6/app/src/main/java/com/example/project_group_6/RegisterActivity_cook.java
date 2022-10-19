@@ -71,12 +71,12 @@ public class RegisterActivity_cook extends AppCompatActivity  {
         String Password = etPassword.getText().toString().trim();
         String address_cook = et_address_cook.getText().toString().trim();
 
-        String id = database_cook_account.push().getKey();
+        // String id = database_cook_account.push().getKey();
         Cook cook =new Cook(Firstname,Lastname,Username,Password,address_cook);
 
-//        String username = cook.get_user_name();
+        String username = cook.get_user_name();
 
-        database_cook_account.child(id).setValue(cook);
+        database_cook_account.child(username).setValue(cook);
 
         etFirstname.setText("");
         etLastname.setText("");
