@@ -35,7 +35,7 @@ public class RegisterActivity_client extends AppCompatActivity {
     private  EditText et_credit_card_expiration_date;
     private  EditText etCVV;
     private EditText  et_address_client;
-
+    private boolean result;
     DatabaseReference database_client_account;
 
 
@@ -61,6 +61,7 @@ public class RegisterActivity_client extends AppCompatActivity {
         et_address_client = findViewById(R.id.et_address_client);
         btnRegister = findViewById(R.id.btn_register_client);
         btnCancel = findViewById(R.id.btn_cancel_client);
+        result = true;
 
         // 设置点击事件
         btnCancel.setOnClickListener(new View.OnClickListener() {
@@ -74,9 +75,10 @@ public class RegisterActivity_client extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener(){
             public void  onClick(View v){
                 addClient_account();
+                if(result == true){
                 Intent intent = new Intent(RegisterActivity_client.this, LoginActivityClient.class);
                 startActivity(intent);
-                finish();
+                finish();}
             }
         });
     }
@@ -88,51 +90,66 @@ public class RegisterActivity_client extends AppCompatActivity {
         String Lastname = etLastname.getText().toString().trim();
         String Username = etUsername.getText().toString().trim().replace(".","");
         String Password = etPassword.getText().toString().trim();
-        Long credit_card_number = Long.parseLong(String.valueOf(et_credit_card_number.getText().toString()));
+        String credit_card_number = (et_credit_card_number.getText().toString());
         String credit_card_expiration_date = et_credit_card_expiration_date.getText().toString().trim();
-        int CVV = Integer.parseInt(String.valueOf(etCVV.getText().toString()));
+        String CVV = (etCVV.getText().toString());
         String address_client = et_address_client.getText().toString().trim();
-
+        etFirstname.setError(null);
+        etLastname.setError(null);
+        etUsername.setError(null);
+        etPassword.setError(null);
+        et_credit_card_number.setError(null);
+        et_credit_card_expiration_date.setError(null);
+        et_address_client.setError(null);
+        etCVV.setError(null);
         if(Firstname.isEmpty()){
             etFirstname.setError("CANT BE EMPTY!");
             etFirstname.requestFocus();
+            result = false;
             return;
         }
         if(Lastname.isEmpty()){
-            etFirstname.setError("CANT BE EMPTY!");
-            etFirstname.requestFocus();
+            etLastname.setError("CANT BE EMPTY!");
+            etLastname.requestFocus();
+            result = false;
             return;
         }
         if(Username.isEmpty()){
-            etFirstname.setError("CANT BE EMPTY!");
-            etFirstname.requestFocus();
+            etUsername.setError("CANT BE EMPTY!");
+            etUsername.requestFocus();
+            result = false;
             return;
         }
         if(Password.isEmpty()){
-            etFirstname.setError("CANT BE EMPTY!");
-            etFirstname.requestFocus();
+            etPassword.setError("CANT BE EMPTY!");
+            etPassword.requestFocus();
+            result = false;
             return;
         }
         if(credit_card_number.toString().isEmpty() ||  credit_card_number.toString().length() != 16){
-            etFirstname.setError("Invalid Input!");
-            etFirstname.requestFocus();
+            et_credit_card_number.setError("Invalid Input!");
+            et_credit_card_number.requestFocus();
+            result = false;
             return;
         }
 
-        if(credit_card_expiration_date.isEmpty() || credit_card_expiration_date.length() != 5 || credit_card_expiration_date.contains("/")){
-            etFirstname.setError("Invalid Input!");
-            etFirstname.requestFocus();
+        if(credit_card_expiration_date.isEmpty() || (credit_card_expiration_date.length() != 5 && credit_card_expiration_date.contains("/"))){
+            et_credit_card_expiration_date.setError("Invalid Input!");
+            et_credit_card_expiration_date.requestFocus();
+            result = false;
             return;
         }
         if(String.valueOf(CVV).isEmpty() || String.valueOf(CVV).length() != 3){
-            etFirstname.setError("Invalid Input!");
-            etFirstname.requestFocus();
+            etCVV.setError("Invalid Input!");
+            etCVV.requestFocus();
+            result = false;
             return;
         }
 
         if(address_client.isEmpty()){
-            etFirstname.setError("CANT BE EMPTY!");
-            etFirstname.requestFocus();
+            et_address_client.setError("CANT BE EMPTY!");
+            et_address_client.requestFocus();
+            result = false;
             return;
         }
 

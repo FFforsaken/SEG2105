@@ -22,7 +22,7 @@ public class RegisterActivity_cook extends AppCompatActivity  {
     private EditText etLastname;
     private EditText et_address_cook;
     private EditText et_shortdiscription;
-
+    private Boolean result;
 
     DatabaseReference database_cook_account;
 
@@ -47,7 +47,7 @@ public class RegisterActivity_cook extends AppCompatActivity  {
 
         btnRegister = findViewById(R.id.btn_register_cook);
         btnCancel = findViewById(R.id.btn_cancel_cook);
-
+        result = true;
         // 设置点击事件
 
         btnCancel.setOnClickListener(new View.OnClickListener() {
@@ -61,10 +61,11 @@ public class RegisterActivity_cook extends AppCompatActivity  {
         btnRegister.setOnClickListener(new View.OnClickListener(){
             public void  onClick(View v){
                 addcook_account();
+                if(result==true){
                 Intent intent = new Intent(RegisterActivity_cook.this, LoginActivityCook.class);
                 startActivity(intent);
                 finish();
-            }
+            }}
         });
     }
 
@@ -75,32 +76,49 @@ public class RegisterActivity_cook extends AppCompatActivity  {
         String Username = etUsername.getText().toString().trim().replace(".","");
         String Password = etPassword.getText().toString().trim();
         String address_cook = et_address_cook.getText().toString().trim();
+        String shortdiscription = et_shortdiscription.getText().toString().trim();
 
-
+        etFirstname.setError(null);
+        etLastname.setError(null);
+        etUsername.setError(null);
+        etPassword.setError(null);
+        et_address_cook.setError(null);
+        et_shortdiscription.setError(null);
         ///////////////////////////////////////////////////////////////////////////////////////////
         if(Firstname.isEmpty()){
             etFirstname.setError("CANT BE EMPTY!");
             etFirstname.requestFocus();
+            result = false;
             return;
         }
         if(Lastname.isEmpty()){
-            etFirstname.setError("CANT BE EMPTY!");
-            etFirstname.requestFocus();
+            etLastname.setError("CANT BE EMPTY!");
+            etLastname.requestFocus();
+            result = false;
             return;
         }
         if(Username.isEmpty()){
-            etFirstname.setError("CANT BE EMPTY!");
-            etFirstname.requestFocus();
+            etUsername.setError("CANT BE EMPTY!");
+            etUsername.requestFocus();
+            result = false;
             return;
         }
         if(Password.isEmpty()){
-            etFirstname.setError("CANT BE EMPTY!");
-            etFirstname.requestFocus();
+            etPassword.setError("CANT BE EMPTY!");
+            etPassword.requestFocus();
+            result = false;
             return;
         }
         if(address_cook.isEmpty()){
-            etFirstname.setError("CANT BE EMPTY!");
-            etFirstname.requestFocus();
+            et_address_cook.setError("CANT BE EMPTY!");
+            et_address_cook.requestFocus();
+            result = false;
+            return;
+        }
+        if(shortdiscription.isEmpty()){
+            et_shortdiscription.setError("CANT BE EMPTY!");
+            et_shortdiscription.requestFocus();
+            result = false;
             return;
         }
 
@@ -117,6 +135,7 @@ public class RegisterActivity_cook extends AppCompatActivity  {
         etUsername.setText("");
         etPassword.setText("");
         et_address_cook.setText("");
+        et_shortdiscription.setText("");
 
         Toast.makeText(this, "Cook Account created successfully",Toast.LENGTH_LONG).show();
 
