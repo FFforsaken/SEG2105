@@ -124,7 +124,7 @@ public class RegisterActivity_cook extends AppCompatActivity  {
 
 
         // String id = database_cook_account.push().getKey();
-        Cook cook =new Cook(Firstname,Lastname,Username,Password,address_cook);
+        Cook cook = new Cook(Firstname,Lastname,Username,Password,address_cook);
 
         String username = cook.get_user_name();
 
