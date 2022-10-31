@@ -6,63 +6,58 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 
 
 public class SelectToLogin extends AppCompatActivity {
 
-    private FirebaseAuth mAuth;
+
     private Button btnCook;
     private Button btnClient;
     private TextView title;
     private Button btnAdmin;
+    DatabaseReference database_default_administrator_account;
 
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mAuth = FirebaseAuth.getInstance();
-
-
+        database_default_administrator_account = FirebaseDatabase.getInstance().getReference("Administrator_accounts");
         initView();
 
         addAdministrator_account();
 
     }
 
-    public void initView() {
+    public void initView(){
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) actionBar.hide();
-        btnClient = findViewById(R.id.btnclient);
+        btnClient =findViewById(R.id.btnclient);
         btnCook = findViewById(R.id.btncook);
         btnAdmin = findViewById(R.id.btnadmin);
 
-        btnCook.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
+        btnCook.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
                 Intent intent = new Intent(SelectToLogin.this, LoginActivityCook.class);
                 startActivity(intent);
                 finish();
             }
         });
 
-        btnClient.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
+        btnClient.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
                 Intent intent = new Intent(SelectToLogin.this, LoginActivityClient.class);
                 startActivity(intent);
                 finish();
             }
         });
-        btnAdmin.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
+        btnAdmin.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
                 Intent intent = new Intent(SelectToLogin.this, LoginActivityAdmin.class);
                 startActivity(intent);
                 finish();
@@ -72,22 +67,14 @@ public class SelectToLogin extends AppCompatActivity {
 
     }
 
-    public void addAdministrator_account() {
+    public void addAdministrator_account(){
+//        String id =  database_default_administrator_account.push().getKey();
+        Administrator administrator = new Administrator("Kevin","Wu","kevin_wu","wuwuwu123");
 
-        Administrator administrator = new Administrator("Kevin", "Wu", "kevin_wu", "wuwuwu123");
+        String username = administrator.get_user_name();
 
+        database_default_administrator_account.child(username).setValue(administrator);
 
-        mAuth.createUserWithEmailAndPassword(administrator.get_email_address(), administrator.get_account_password())
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            FirebaseDatabase.getInstance().getReference("Administrator")
-                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                    .setValue(administrator);
-                        }
-                    }
-
-                });
     }
+
 }

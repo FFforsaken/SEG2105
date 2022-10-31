@@ -6,14 +6,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 
@@ -28,15 +24,14 @@ public class RegisterActivity_cook extends AppCompatActivity  {
     private EditText et_address_cook;
     private EditText et_shortdiscription;
     private Boolean result;
-    private FirebaseAuth mAuth;
 
+    DatabaseReference database_cook_account;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_cook);
-        mAuth = FirebaseAuth.getInstance();
         initView();
-
+        database_cook_account = FirebaseDatabase.getInstance().getReference("cook_accounts");
     }
     public void initView() {
 
@@ -67,7 +62,7 @@ public class RegisterActivity_cook extends AppCompatActivity  {
         btnRegister.setOnClickListener(new View.OnClickListener(){
             public void  onClick(View v){
                 addcook_account();
-                if(result){
+                if(result==true){
                 Intent intent = new Intent(RegisterActivity_cook.this, LoginActivityCook.class);
                 startActivity(intent);
                 finish();
@@ -132,29 +127,9 @@ public class RegisterActivity_cook extends AppCompatActivity  {
         // String id = database_cook_account.push().getKey();
         Cook cook = new Cook(Firstname,Lastname,Username,Password,address_cook);
 
-        mAuth.createUserWithEmailAndPassword(cook.get_email_address(), cook.get_account_password())
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            FirebaseDatabase.getInstance().getReference("clients")
-                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                    .setValue(cook).addOnCompleteListener(new OnCompleteListener<Void>(){
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task){
+        String username = cook.get_user_name();
 
-                                            if(task.isSuccessful()){
-                                                Toast.makeText(RegisterActivity_cook.this, "Cook Account created successfully",Toast.LENGTH_LONG).show();
-                                            }
-                                            else{
-                                                Toast.makeText(RegisterActivity_cook.this, "Failed to register! something went wrong.",Toast.LENGTH_LONG).show();
-                                            }
-                                        }
-                                    });
-                        }
-                    }
-
-                });
+        database_cook_account.child(username).setValue(cook);
 
         etFirstname.setText("");
         etLastname.setText("");
@@ -163,10 +138,36 @@ public class RegisterActivity_cook extends AppCompatActivity  {
         et_address_cook.setText("");
         et_shortdiscription.setText("");
 
-
+        Toast.makeText(this, "Cook Account created successfully",Toast.LENGTH_LONG).show();
 
 
     }
+
+//    private void updateCook_account_info(String first_name, String last_name, String email_address, String account_password, String address) {
+//
+//
+//
+//        DatabaseReference dR = FirebaseDatabase.getInstance().getReference("cook_account").child(email_address);
+//
+//        // update the product by using setValue()
+//        Cook cook = new Cook(first_name,last_name,email_address,account_password,address);
+//        dR.setValue(cook);
+//
+//        Toast.makeText(getApplicationContext(), "Updated successfully", Toast.LENGTH_LONG).show();
+//
+//
+//    }
+//
+//    private boolean deletecook_account(String username) {
+//
+//        DatabaseReference dR = FirebaseDatabase.getInstance().getReference("cook_account").child(username);
+//
+//        dR.removeValue();
+//
+//        Toast.makeText(getApplicationContext(), "Account Deleted successfully", Toast.LENGTH_LONG).show();
+//
+//        return true;
+//    }
 
 
 
