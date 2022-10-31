@@ -1,4 +1,5 @@
 package com.example.project_group_6;
+import com.example.project_group_6.Client;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -94,6 +95,7 @@ public class RegisterActivity_client extends AppCompatActivity {
         String credit_card_expiration_date = et_credit_card_expiration_date.getText().toString().trim();
         String CVV = (etCVV.getText().toString());
         String address_client = et_address_client.getText().toString().trim();
+
         etFirstname.setError(null);
         etLastname.setError(null);
         etUsername.setError(null);
@@ -154,9 +156,9 @@ public class RegisterActivity_client extends AppCompatActivity {
         }
 
         // Create a Product object and save this object
-//        String id = database_client_account.push().getKey();
 
-        Client client = new Client(Firstname,Lastname,Username,Password,address_client,credit_card_number,credit_card_expiration_date,CVV);
+
+        Client client = new Client(Firstname, Lastname, Username, Password, address_client, credit_card_number, credit_card_expiration_date, CVV);
         String username = client.get_user_name();
 
         database_client_account.child(username).setValue(client);
