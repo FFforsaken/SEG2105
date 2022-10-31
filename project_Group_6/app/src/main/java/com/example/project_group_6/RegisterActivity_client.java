@@ -135,7 +135,7 @@ public class RegisterActivity_client extends AppCompatActivity {
             result = false;
             return;
         }
-        if(credit_card_number.toString().isEmpty() ||  credit_card_number.toString().length() != 16){
+        if(credit_card_number.isEmpty() ||  credit_card_number.length() != 16){
             et_credit_card_number.setError("Invalid Input!");
             et_credit_card_number.requestFocus();
             result = false;
@@ -148,7 +148,7 @@ public class RegisterActivity_client extends AppCompatActivity {
             result = false;
             return;
         }
-        if(String.valueOf(CVV).isEmpty() || String.valueOf(CVV).length() != 3){
+        if(CVV.isEmpty() || CVV.length() != 3){
             etCVV.setError("Invalid Input!");
             etCVV.requestFocus();
             result = false;

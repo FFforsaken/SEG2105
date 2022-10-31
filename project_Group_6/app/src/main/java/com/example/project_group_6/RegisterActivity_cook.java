@@ -67,7 +67,7 @@ public class RegisterActivity_cook extends AppCompatActivity  {
         btnRegister.setOnClickListener(new View.OnClickListener(){
             public void  onClick(View v){
                 addcook_account();
-                if(result==true){
+                if(result){
                 Intent intent = new Intent(RegisterActivity_cook.this, LoginActivityCook.class);
                 startActivity(intent);
                 finish();
@@ -163,36 +163,10 @@ public class RegisterActivity_cook extends AppCompatActivity  {
         et_address_cook.setText("");
         et_shortdiscription.setText("");
 
-        Toast.makeText(this, "Cook Account created successfully",Toast.LENGTH_LONG).show();
+
 
 
     }
-
-//    private void updateCook_account_info(String first_name, String last_name, String email_address, String account_password, String address) {
-//
-//
-//
-//        DatabaseReference dR = FirebaseDatabase.getInstance().getReference("cook_account").child(email_address);
-//
-//        // update the product by using setValue()
-//        Cook cook = new Cook(first_name,last_name,email_address,account_password,address);
-//        dR.setValue(cook);
-//
-//        Toast.makeText(getApplicationContext(), "Updated successfully", Toast.LENGTH_LONG).show();
-//
-//
-//    }
-//
-//    private boolean deletecook_account(String username) {
-//
-//        DatabaseReference dR = FirebaseDatabase.getInstance().getReference("cook_account").child(username);
-//
-//        dR.removeValue();
-//
-//        Toast.makeText(getApplicationContext(), "Account Deleted successfully", Toast.LENGTH_LONG).show();
-//
-//        return true;
-//    }
 
 
 

@@ -1,6 +1,7 @@
 package com.example.project_group_6;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,6 +12,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,13 +28,15 @@ public class LoginActivityCook extends AppCompatActivity {
     private EditText etUsername;
     private EditText etPassword;
     private TextView tvRegist;
-    DatabaseReference databaseReference;
+//    DatabaseReference databaseReference;
+    private FirebaseAuth mAuth;
     
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_cook);
+        mAuth = FirebaseAuth.getInstance();
         initView();
-        databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://project-group-6-c1e1f-default-rtdb.firebaseio.com/");
+//        databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://project-group-6-c1e1f-default-rtdb.firebaseio.com/");
     }
     
     public void initView() {
@@ -66,6 +73,13 @@ public class LoginActivityCook extends AppCompatActivity {
 
         if (val.isEmpty()) {
             etUsername.setError("Username cannot be empty");
+            etUsername.requestFocus();
+            return false;
+        }
+
+        else if(!Patterns.EMAIL_ADDRESS.matcher(val).matches()) {
+            etUsername.setError("Please enter a valid email!");
+            etUsername.requestFocus();
             return false;
         }
 
@@ -82,6 +96,7 @@ public class LoginActivityCook extends AppCompatActivity {
 
         if (val.isEmpty()) {
             etPassword.setError("Password cannot be empty");
+            etUsername.requestFocus();
             return false;
         }
 
@@ -108,40 +123,22 @@ public class LoginActivityCook extends AppCompatActivity {
         String UserEntered_password = etPassword.getText().toString().trim();
 
 
-
-        databaseReference.child("cook_accounts").addListenerForSingleValueEvent(new ValueEventListener() {
+        mAuth.signInWithEmailAndPassword(UserEntered_username, UserEntered_password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.hasChild(UserEntered_username)){
-
-                    etUsername.setError(null);
-
-
-                    final String getPasswordfromDB = dataSnapshot.child(UserEntered_username).child("_account_password").getValue(String.class);
-
-                    if (getPasswordfromDB.equals(UserEntered_password)){
-                        etPassword.setError(null);
-                        Intent intent = new Intent(LoginActivityCook.this, WelcomeforCook.class);
-                        startActivity(intent);
-                        finish();
-                    }
-                    else{
-
-                        etPassword.setError("Password is wrong!");
-                        etPassword.requestFocus();
-                    }
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    Intent intent = new Intent(LoginActivityCook.this, WelcomeforCook.class);
+                    startActivity(intent);
+                    finish();
                 }
                 else{
-                    etUsername.setError("No such User exists");
-                    etUsername.requestFocus();
+                    Toast.makeText(LoginActivityCook.this, "Failed to login! Please check your credentials.",Toast.LENGTH_LONG).show();
                 }
             }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
         });
+
+
 
     }
 
