@@ -6,14 +6,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
 
@@ -37,14 +38,16 @@ public class RegisterActivity_client extends AppCompatActivity {
     private  EditText etCVV;
     private EditText  et_address_client;
     private boolean result;
-    DatabaseReference database_client_account;
+    private FirebaseAuth mAuth;
 
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_client);
+        mAuth = FirebaseAuth.getInstance();
         initView();
-        database_client_account = FirebaseDatabase.getInstance().getReference("client_accounts");
+
+
     }
     public void initView() {
 
@@ -73,27 +76,30 @@ public class RegisterActivity_client extends AppCompatActivity {
                 finish();
             }
         });
+
         btnRegister.setOnClickListener(new View.OnClickListener(){
             public void  onClick(View v){
                 addClient_account();
+
                 if(result == true){
-                Intent intent = new Intent(RegisterActivity_client.this, LoginActivityClient.class);
-                startActivity(intent);
-                finish();}
+                    Intent intent = new Intent(RegisterActivity_client.this, LoginActivityClient.class);
+                    startActivity(intent);
+                    finish();
+                }
             }
         });
     }
 
-    //////////////// method to add, update and delete an account from database;
+    //////////////// method to add user to database;
     public void addClient_account(){
 
         String Firstname = etFirstname.getText().toString().trim();
         String Lastname = etLastname.getText().toString().trim();
-        String Username = etUsername.getText().toString().trim().replace(".","");
+        String Username = etUsername.getText().toString().trim();
         String Password = etPassword.getText().toString().trim();
-        String credit_card_number = (et_credit_card_number.getText().toString());
+        String credit_card_number = et_credit_card_number.getText().toString().trim();
         String credit_card_expiration_date = et_credit_card_expiration_date.getText().toString().trim();
-        String CVV = (etCVV.getText().toString());
+        String CVV = etCVV.getText().toString().trim();
         String address_client = et_address_client.getText().toString().trim();
 
         etFirstname.setError(null);
@@ -104,6 +110,7 @@ public class RegisterActivity_client extends AppCompatActivity {
         et_credit_card_expiration_date.setError(null);
         et_address_client.setError(null);
         etCVV.setError(null);
+
         if(Firstname.isEmpty()){
             etFirstname.setError("CANT BE EMPTY!");
             etFirstname.requestFocus();
@@ -156,13 +163,31 @@ public class RegisterActivity_client extends AppCompatActivity {
         }
 
         // Create a Product object and save this object
-
-
         Client client = new Client(Firstname, Lastname, Username, Password, address_client, credit_card_number, credit_card_expiration_date, CVV);
-        String username = client.get_user_name();
 
-        database_client_account.child(username).setValue(client);
+        mAuth.createUserWithEmailAndPassword(client.get_email_address(), client.get_account_password())
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            FirebaseDatabase.getInstance().getReference("clients")
+                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                    .setValue(client).addOnCompleteListener(new OnCompleteListener<Void>(){
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task){
 
+                                    if(task.isSuccessful()){
+                                        Toast.makeText(RegisterActivity_client.this, "Client Account created successfully",Toast.LENGTH_LONG).show();
+                                    }
+                                    else{
+                                        Toast.makeText(RegisterActivity_client.this, "Failed to register! something went wrong.",Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            });
+                        }
+                    }
+
+                });
 
         // clear the text boxes
         etFirstname.setText("");
@@ -174,42 +199,6 @@ public class RegisterActivity_client extends AppCompatActivity {
         etCVV.setText("");
         et_address_client.setText("");
 
-        Toast.makeText(this, "Client Account created successfully",Toast.LENGTH_LONG).show();
-//
-//        }
-//        else{
-//            Toast.makeText(this, "Please enter a name",Toast.LENGTH_LONG).show();
-//        }
+
     }
-//
-//    private void updateClient_account_info(String first_name, String last_name, String email_address, String account_password, String address, long credit_card_number, String credit_card_expiration_date, int CVV) {
-//
-//
-//
-//        DatabaseReference dR = FirebaseDatabase.getInstance().getReference("client_account").child(email_address);
-//
-//        // update the product by using setValue()
-//        Client client = new Client(first_name,last_name,email_address,account_password,address,credit_card_number,credit_card_expiration_date,CVV);
-//        dR.setValue(client);
-//
-//        Toast.makeText(getApplicationContext(), "Updated successfully", Toast.LENGTH_LONG).show();
-//
-//
-//    }
-//
-//    private boolean deleteClient_account(String username) {
-//
-//        DatabaseReference dR = FirebaseDatabase.getInstance().getReference("client_account").child(username);
-//
-//        dR.removeValue();
-//
-//        Toast.makeText(getApplicationContext(), "Account Deleted successfully", Toast.LENGTH_LONG).show();
-//
-//        return true;
-//    }
-
-
-
-
-
 }

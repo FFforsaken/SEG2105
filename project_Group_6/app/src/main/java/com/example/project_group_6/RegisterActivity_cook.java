@@ -6,10 +6,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.database.DatabaseReference;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
 
@@ -24,14 +28,15 @@ public class RegisterActivity_cook extends AppCompatActivity  {
     private EditText et_address_cook;
     private EditText et_shortdiscription;
     private Boolean result;
+    private FirebaseAuth mAuth;
 
-    DatabaseReference database_cook_account;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_cook);
+        mAuth = FirebaseAuth.getInstance();
         initView();
-        database_cook_account = FirebaseDatabase.getInstance().getReference("cook_accounts");
+
     }
     public void initView() {
 
@@ -127,9 +132,29 @@ public class RegisterActivity_cook extends AppCompatActivity  {
         // String id = database_cook_account.push().getKey();
         Cook cook = new Cook(Firstname,Lastname,Username,Password,address_cook);
 
-        String username = cook.get_user_name();
+        mAuth.createUserWithEmailAndPassword(cook.get_email_address(), cook.get_account_password())
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            FirebaseDatabase.getInstance().getReference("clients")
+                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                    .setValue(cook).addOnCompleteListener(new OnCompleteListener<Void>(){
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task){
 
-        database_cook_account.child(username).setValue(cook);
+                                            if(task.isSuccessful()){
+                                                Toast.makeText(RegisterActivity_cook.this, "Cook Account created successfully",Toast.LENGTH_LONG).show();
+                                            }
+                                            else{
+                                                Toast.makeText(RegisterActivity_cook.this, "Failed to register! something went wrong.",Toast.LENGTH_LONG).show();
+                                            }
+                                        }
+                                    });
+                        }
+                    }
+
+                });
 
         etFirstname.setText("");
         etLastname.setText("");
