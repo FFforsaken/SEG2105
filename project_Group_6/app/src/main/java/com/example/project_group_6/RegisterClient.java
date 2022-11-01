@@ -1,5 +1,4 @@
 package com.example.project_group_6;
-import com.example.project_group_6.Client;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,20 +9,14 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 
 import android.widget.Toast;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.List;
 
 
-public class RegisterActivity_client extends AppCompatActivity {
+public class RegisterClient extends AppCompatActivity {
 
     private Button btnRegister;
     private Button btnCancel;
@@ -68,7 +61,7 @@ public class RegisterActivity_client extends AppCompatActivity {
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(RegisterActivity_client.this, LoginActivityClient.class);
+                Intent intent = new Intent(RegisterClient.this, LoginActivityClient.class);
                 startActivity(intent);
                 finish();
             }
@@ -77,7 +70,7 @@ public class RegisterActivity_client extends AppCompatActivity {
             public void  onClick(View v){
                 addClient_account();
                 if(result == true){
-                Intent intent = new Intent(RegisterActivity_client.this, LoginActivityClient.class);
+                Intent intent = new Intent(RegisterClient.this, LoginActivityClient.class);
                 startActivity(intent);
                 finish();}
             }

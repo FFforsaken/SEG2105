@@ -7,7 +7,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class client_main_Activity extends AppCompatActivity {
+public class ClientMain extends AppCompatActivity {
 
 
     Button btn_logout_client;
@@ -22,7 +22,7 @@ public class client_main_Activity extends AppCompatActivity {
         btn_logout_client.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(client_main_Activity.this, SelectToLogin.class);
+                Intent intent = new Intent(ClientMain.this, SelectToLogin.class);
                 startActivity(intent);
             }
         });

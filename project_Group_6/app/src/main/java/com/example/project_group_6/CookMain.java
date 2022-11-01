@@ -7,7 +7,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class cook_main_Activity extends AppCompatActivity {
+public class CookMain extends AppCompatActivity {
 
     Button btn_logout_cook;
 
@@ -21,7 +21,7 @@ public class cook_main_Activity extends AppCompatActivity {
         btn_logout_cook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(cook_main_Activity.this, SelectToLogin.class);
+                Intent intent = new Intent(CookMain.this, SelectToLogin.class);
                 startActivity(intent);
             }
         });

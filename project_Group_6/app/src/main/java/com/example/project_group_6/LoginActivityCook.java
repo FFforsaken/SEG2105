@@ -5,7 +5,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -53,7 +52,7 @@ public class LoginActivityCook extends AppCompatActivity {
         tvRegist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginActivityCook.this, RegisterActivity_cook.class);
+                Intent intent = new Intent(LoginActivityCook.this, RegisterCook.class);
                 startActivity(intent);
                 finish();
             }

@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
-public class administrator_main_Activity extends AppCompatActivity {
+public class AdminMain extends AppCompatActivity {
     Button btn_logout_admin;
     Button btn_complaints;
 
@@ -20,7 +20,7 @@ public class administrator_main_Activity extends AppCompatActivity {
         btn_logout_admin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(administrator_main_Activity.this, SelectToLogin.class);
+                Intent intent = new Intent(AdminMain.this, SelectToLogin.class);
                 startActivity(intent);
                 finish();
             }
@@ -32,7 +32,7 @@ public class administrator_main_Activity extends AppCompatActivity {
         btn_complaints.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(administrator_main_Activity.this, list_of_complaints.class);
+                Intent intent = new Intent(AdminMain.this, AdminComplaints.class);
                 startActivity(intent);
                 finish();
             }

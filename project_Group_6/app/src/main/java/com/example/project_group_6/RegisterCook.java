@@ -1,5 +1,4 @@
 package com.example.project_group_6;
-import com.example.project_group_6.Cook;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -14,7 +13,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 
 import android.widget.Toast;
-public class RegisterActivity_cook extends AppCompatActivity  {
+public class RegisterCook extends AppCompatActivity  {
     private Button btnRegister;
     private Button btnCancel;
     private EditText etUsername;
@@ -54,7 +53,7 @@ public class RegisterActivity_cook extends AppCompatActivity  {
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(RegisterActivity_cook.this, LoginActivityCook.class);
+                Intent intent = new Intent(RegisterCook.this, LoginActivityCook.class);
                 startActivity(intent);
                 finish();
             }
@@ -63,7 +62,7 @@ public class RegisterActivity_cook extends AppCompatActivity  {
             public void  onClick(View v){
                 addcook_account();
                 if(result==true){
-                Intent intent = new Intent(RegisterActivity_cook.this, LoginActivityCook.class);
+                Intent intent = new Intent(RegisterCook.this, LoginActivityCook.class);
                 startActivity(intent);
                 finish();
             }}

@@ -21,7 +21,7 @@ public class WelcomeforCook extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(WelcomeforCook.this, administrator_main_Activity.class);
+                Intent intent = new Intent(WelcomeforCook.this, AdminMain.class);
                 startActivity(intent);
                 finish();
             }

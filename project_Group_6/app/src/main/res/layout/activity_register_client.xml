@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="10dp"
-    tools:context=".RegisterActivity_client">
+    tools:context=".RegisterClient">
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="match_parent"

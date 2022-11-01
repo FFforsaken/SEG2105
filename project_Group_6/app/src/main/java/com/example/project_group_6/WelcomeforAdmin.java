@@ -21,7 +21,7 @@ public class WelcomeforAdmin extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(WelcomeforAdmin.this, administrator_main_Activity.class);
+                Intent intent = new Intent(WelcomeforAdmin.this, AdminMain.class);
                 startActivity(intent);
                 finish();
             }
