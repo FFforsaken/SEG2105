@@ -6,9 +6,13 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.firebase.database.DatabaseReference;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,7 +35,7 @@ public class ComplaintPop {
 
     //PopupWindow display method
 
-    public void showPopupWindow(final View view,String complaint) {
+    public void showPopupWindow(final View view, String complaint, String cook, String client, DatabaseReference databaseReference) {
 
 
         //Create a View object yourself through inflater
@@ -55,14 +59,27 @@ public class ComplaintPop {
         TextView title = popupView.findViewById(R.id.pop_title);
         title.setText(complaint);
 
-//        Button buttonEdit = popupView.findViewById(R.id.messageButton);
-//        buttonEdit.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                //As an example, display the message
-//                Toast.makeText(view.getContext(), "Wow, popup action button", Toast.LENGTH_SHORT).show();
-//            }
-//        });
+        Button dismiss = popupView.findViewById(R.id.dismiss);
+        dismiss.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Remove value
+                databaseReference.child("complaints").child(cook).child(client).removeValue();
+                popupWindow.dismiss();
+            }
+        });
+
+        Button suspend = popupView.findViewById(R.id.suspend);
+        suspend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //suspend user
+                databaseReference.child("cook_accounts").child(cook).child("_suspend").setValue(true);
+                //Remove value
+                databaseReference.child("complaints").child(cook).child(client).removeValue();
+                popupWindow.dismiss();
+            }
+        });
 
 
 

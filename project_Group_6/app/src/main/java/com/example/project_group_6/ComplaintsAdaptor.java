@@ -37,12 +37,8 @@ public class ComplaintsAdaptor extends RecyclerView.Adapter<ComplaintsAdaptor.Vi
             return textView;
         }
     }
-    /**
-     * Initialize the dataset of the Adapter.
-     *
-     * @param dataSet String[] containing the data to populate views to be used
-     * by RecyclerView.
-     */
+
+
     public ComplaintsAdaptor(ArrayList<String> dataSet) {
         this.complaintSet = dataSet;
     }

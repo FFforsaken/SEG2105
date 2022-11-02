@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -114,6 +115,12 @@ public class LoginActivityCook extends AppCompatActivity {
                 if (dataSnapshot.hasChild(UserEntered_username)){
 
                     etUsername.setError(null);
+                    final boolean suspention = dataSnapshot.child(UserEntered_username).child("_suspend").getValue(boolean.class);
+                    if(suspention){
+                        etUsername.setError("Unable to login, Your account has been suspend");
+                        return;
+                    }
+
 
 
                     final String getPasswordfromDB = dataSnapshot.child(UserEntered_username).child("_account_password").getValue(String.class);

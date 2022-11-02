@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -21,25 +22,35 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 
-import static com.google.firebase.provider.FirebaseInitProvider.TAG;
 
 public class AdminComplaints extends AppCompatActivity implements ComplaintsAdaptor.ItemClickListener {
         RecyclerView recyclerView;
         ArrayList<String> listOfComplaints;
+        ArrayList<String> listOfCooks;
+        ArrayList<String> listOfClient;
 
         //DEFINING A STRING ADAPTER WHICH WILL HANDLE THE DATA OF THE LISTVIEW
         ComplaintsAdaptor adapter;
         LinearLayoutManager layoutManager;
+        DatabaseReference databaseReference;
 
-        Button btn_Dismiss, btn_indefinitely, btn_temporarily;
 
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
+            databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://project-7629811168995371601-default-rtdb.firebaseio.com/");
             setContentView(R.layout.list_of_complaints);
 
             listOfComplaints = new ArrayList<String>();
+            listOfCooks =  new ArrayList<String>();
+            listOfClient = new ArrayList<String>();
             // set up the RecyclerView
             recyclerView = findViewById(R.id.ListofComplaints);
             layoutManager = new LinearLayoutManager(this);
@@ -57,7 +68,35 @@ public class AdminComplaints extends AppCompatActivity implements ComplaintsAdap
             recyclerView.addItemDecoration(dividerItemDecoration);
             recyclerView.addItemDecoration(dividerItemDecoration);
 
-            setUpComplaints();
+//            setUpComplaints();
+            // Read from the database
+            databaseReference.child("complaints").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    listOfComplaints.clear();
+                    // This method is called once with the initial value and again
+                    // whenever data at this location is updated.
+                    for (DataSnapshot child : dataSnapshot.getChildren()) {
+                        String cook = child.getKey();
+                        for(DataSnapshot c : child.getChildren()){
+                            listOfComplaints.add(c.getValue(String.class));
+                            listOfCooks.add(cook);
+                            listOfClient.add(c.getKey());
+                            Log.d("DB out",cook);
+                            Log.d("DB out",c.getValue(String.class));
+                        }
+
+
+                    }
+                    adapter.notifyDataSetChanged();
+                }
+
+                @Override
+                public void onCancelled(DatabaseError error) {
+                    // Failed to read value
+                    Log.w("DB expection", "Failed to read value.", error.toException());
+                }
+            });
 
 
             //However, given that Clients cannot yet purchase meals and submit complaints at this stage, you will pre-create a list
@@ -65,36 +104,12 @@ public class AdminComplaints extends AppCompatActivity implements ComplaintsAdap
 //            onItemLongClick();
         }
 
-        private void setUpComplaints(){
-            ///Need to connect to DB and update the list
-            // The list should store the corresponding cook as well
-            listOfComplaints.clear();
-            FirebaseFirestore db = FirebaseFirestore.getInstance();
-            db.collection("users")
-                    .get()
-                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                            if (task.isSuccessful()) {
-                                for (QueryDocumentSnapshot document : task.getResult()) {
-                                    Log.d(TAG, document.getId() + " => " + document.getData());
-                                }
-                            } else {
-                                Log.w(TAG, "Error getting documents.", task.getException());
-                            }
-                        }
-                    });
-            listOfComplaints.add("i dont like this food0");
-            listOfComplaints.add("i dont like this food1");
-            listOfComplaints.add("i dont like this food2");
-            adapter.notifyDataSetChanged();
-        }
 
     @Override
     public void onItemClick(View view, int position) {
 
         ComplaintPop popUpClass = new ComplaintPop();
-        popUpClass.showPopupWindow(view,adapter.getItem(position));
+        popUpClass.showPopupWindow(view,listOfComplaints.get(position),listOfCooks.get(position),listOfClient.get(position),databaseReference);
         Toast.makeText(this, "You clicked " + adapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
     }
 
