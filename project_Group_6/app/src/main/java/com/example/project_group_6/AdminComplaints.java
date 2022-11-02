@@ -1,6 +1,8 @@
 package com.example.project_group_6;
 
 
+import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,9 +19,9 @@ public class AdminComplaints extends AppCompatActivity implements ComplaintsAdap
         RecyclerView recyclerView;
         ArrayList<String> listOfComplaints;
 
-    //DEFINING A STRING ADAPTER WHICH WILL HANDLE THE DATA OF THE LISTVIEW
-    ComplaintsAdaptor adapter;
-    LinearLayoutManager layoutManager;
+        //DEFINING A STRING ADAPTER WHICH WILL HANDLE THE DATA OF THE LISTVIEW
+        ComplaintsAdaptor adapter;
+        LinearLayoutManager layoutManager;
 
         Button btn_Dismiss, btn_indefinitely, btn_temporarily;
 
@@ -40,12 +42,12 @@ public class AdminComplaints extends AppCompatActivity implements ComplaintsAdap
 
             DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
                     layoutManager.getOrientation());
+
+            dividerItemDecoration.setDrawable(new ColorDrawable(getResources().getColor(R.color.white)));
+            recyclerView.addItemDecoration(dividerItemDecoration);
             recyclerView.addItemDecoration(dividerItemDecoration);
 
             setUpComplaints();
-
-            Toast.makeText( this,"num of item" + adapter.getItemCount(),Toast.LENGTH_SHORT).show();
-
 
 
             //However, given that Clients cannot yet purchase meals and submit complaints at this stage, you will pre-create a list
@@ -65,6 +67,9 @@ public class AdminComplaints extends AppCompatActivity implements ComplaintsAdap
 
     @Override
     public void onItemClick(View view, int position) {
+
+        ComplaintPop popUpClass = new ComplaintPop();
+        popUpClass.showPopupWindow(view,adapter.getItem(position));
         Toast.makeText(this, "You clicked " + adapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
     }
 
