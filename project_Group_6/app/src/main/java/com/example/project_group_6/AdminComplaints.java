@@ -4,16 +4,26 @@ package com.example.project_group_6;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+
+import static com.google.firebase.provider.FirebaseInitProvider.TAG;
 
 public class AdminComplaints extends AppCompatActivity implements ComplaintsAdaptor.ItemClickListener {
         RecyclerView recyclerView;
@@ -59,6 +69,21 @@ public class AdminComplaints extends AppCompatActivity implements ComplaintsAdap
             ///Need to connect to DB and update the list
             // The list should store the corresponding cook as well
             listOfComplaints.clear();
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            db.collection("users")
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()) {
+                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                    Log.d(TAG, document.getId() + " => " + document.getData());
+                                }
+                            } else {
+                                Log.w(TAG, "Error getting documents.", task.getException());
+                            }
+                        }
+                    });
             listOfComplaints.add("i dont like this food0");
             listOfComplaints.add("i dont like this food1");
             listOfComplaints.add("i dont like this food2");
