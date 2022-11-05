@@ -4,6 +4,7 @@ public class Cook extends User {
 
     private boolean available = true; // to be set by temporarily close the user account.
     private boolean indefinitely_Closed = false; // to set a user to indefinitely Close or not.
+    public boolean suspend = false;
 
     public Cook(String first_name, String last_name, String email_address, String account_password, String address){
         super(first_name, last_name, email_address, account_password, address);
