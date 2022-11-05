@@ -4,10 +4,11 @@ public class Cook extends User {
 
     private boolean available = true; // to be set by temporarily close the user account.
     private boolean indefinitely_Closed = false; // to set a user to indefinitely Close or not.
-    public boolean suspend = false;
+    private boolean suspend;
 
     public Cook(String first_name, String last_name, String email_address, String account_password, String address){
         super(first_name, last_name, email_address, account_password, address);
+        this.suspend = false;
     }
 
     public Cook(String email_address, String account_password, String address){
@@ -21,6 +22,11 @@ public class Cook extends User {
     public void set_indefinitely_Closed(boolean true_false){this.indefinitely_Closed = true_false;}
 
     public boolean view_indefinitely_Closed(){return this.indefinitely_Closed;}
+
+    public void get_suspend(){
+        return this.suspend;
+    }
+
 
     // Short description of themselves
     public String toString(){
