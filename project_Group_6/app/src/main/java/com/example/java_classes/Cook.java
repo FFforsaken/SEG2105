@@ -23,7 +23,7 @@ public class Cook extends User {
 
     public boolean view_indefinitely_Closed(){return this.indefinitely_Closed;}
 
-    public void get_suspend(){
+    public boolean get_suspend(){
         return this.suspend;
     }
 
