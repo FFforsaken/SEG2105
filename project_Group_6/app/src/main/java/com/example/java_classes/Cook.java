@@ -1,4 +1,4 @@
-package com.example.project_group_6;
+package com.example.java_classes;
 
 public class Cook extends User {
 

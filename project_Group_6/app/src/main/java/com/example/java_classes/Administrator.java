@@ -1,6 +1,6 @@
-package com.example.project_group_6;
+package com.example.java_classes;
 
-public class Administrator extends com.example.project_group_6.User {
+public class Administrator extends User {
 
 
 
