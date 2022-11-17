@@ -17,37 +17,20 @@
                 >
 
                 <TextView
-                    android:id="@+id/Menu_title"
+                    android:id="@+id/menuList_title"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
-                    android:text="Menu"
+                    android:text="All Menu"
                     android:textAlignment="center"
                     android:textColor="@color/White"
                     android:textSize="34sp" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/listOfMenu"
+                    android:id="@+id/menulist"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                 </androidx.recyclerview.widget.RecyclerView>
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:id="@+id/addBtn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="ADD" />
-                </LinearLayout>
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>

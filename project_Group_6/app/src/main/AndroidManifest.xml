@@ -27,6 +27,8 @@
         <activity android:name=".WelcomeforCook"/>
         <activity android:name=".AdminComplaints"/>
         <activity android:name=".ComplaintPop"/>
+        <activity android:name=".CookMenu"/>
+        <activity android:name=".MenuList"/>
         <activity
             android:name =".WelcomeActivity"
             android:exported="true">

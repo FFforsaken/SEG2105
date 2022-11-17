@@ -9,45 +9,38 @@ import java.util.ArrayList;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-public class ComplaintsAdaptor extends RecyclerView.Adapter<ComplaintsAdaptor.ViewHolder>{
-    private ArrayList<String> complaintSet;
-    private ArrayList<String> cookIDs;
-    private ItemClickListener complaintClickListener;
+public class MenuListAdaptor extends RecyclerView.Adapter<MenuListAdaptor.ViewHolder>{
+    private ArrayList<String> menus;
+    private ItemClickListener foodClickListener;
+    private boolean enable;
     /**
      * Provide a reference to the type of views that you are using
      * (custom ViewHolder).
      */
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private TextView complaint;
-        private TextView cookID;
+        private TextView food;
 
         public ViewHolder(View view) {
             super(view);
             // Define click listener for the ViewHolder's View
-
-            complaint = (TextView) view.findViewById(R.id.complain_text);
-            complaint.setOnClickListener(this);
-            cookID = (TextView) view.findViewById(R.id.complain_cook);
-            cookID.setOnClickListener(this);
+            food = (TextView) view.findViewById(R.id.menulist_text);
+            food.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-            if (complaintClickListener != null) complaintClickListener.onItemClick(view, getAdapterPosition());
+            if (foodClickListener != null) foodClickListener.onItemClick(view, getAdapterPosition());
         }
 
-        public TextView getComplaint() {
-            return complaint;
-        }
-        public TextView getCook() {
-            return cookID;
+        public TextView getFood() {
+            return food;
         }
     }
 
 
-    public ComplaintsAdaptor(ArrayList<String> dataSet,ArrayList<String> cooks) {
-        this.complaintSet = dataSet;
-        this.cookIDs  = cooks;
+    public MenuListAdaptor(ArrayList<String> dataSet) {
+        this.menus = dataSet;
+        this.enable=true;
     }
 
     // Create new views (invoked by the layout manager)
@@ -55,7 +48,7 @@ public class ComplaintsAdaptor extends RecyclerView.Adapter<ComplaintsAdaptor.Vi
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         // Create a new view, which defines the UI of the list item
         View view = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.complaints_row, viewGroup, false);
+                .inflate(R.layout.menulist_row, viewGroup, false);
 
         return new ViewHolder(view);
     }
@@ -66,27 +59,29 @@ public class ComplaintsAdaptor extends RecyclerView.Adapter<ComplaintsAdaptor.Vi
 
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
-        viewHolder.getComplaint().setText(getItem(position));
-        viewHolder.getCook().setText(getCook(position));
+        viewHolder.getFood().setText(getItem(position));
+        viewHolder.getFood().setClickable(enable);
     }
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return complaintSet.size();
+        return menus.size();
     }
 
     // convenience method for getting data at click position
     String getItem(int id) {
-        return complaintSet.get(id);
-    }
-    String getCook(int id) {
-        return cookIDs.get(id);
+        return menus.get(id);
     }
 
     // allows clicks events to be caught
     void setClickListener(ItemClickListener itemClickListener) {
-        this.complaintClickListener = itemClickListener;
+        this.foodClickListener = itemClickListener;
+    }
+
+    public void setEnable(boolean enable){
+        this.enable=enable;
+
     }
 
 

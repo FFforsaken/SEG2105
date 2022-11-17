@@ -1,53 +1,53 @@
 package com.example.project_group_6;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-public class ComplaintsAdaptor extends RecyclerView.Adapter<ComplaintsAdaptor.ViewHolder>{
-    private ArrayList<String> complaintSet;
-    private ArrayList<String> cookIDs;
-    private ItemClickListener complaintClickListener;
+public class MenuAdaptor extends RecyclerView.Adapter<MenuAdaptor.ViewHolder>{
+    private ArrayList<String> menus;
+    private ItemClickListener removeClickListener;
+    private boolean enable;
     /**
      * Provide a reference to the type of views that you are using
      * (custom ViewHolder).
      */
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private TextView complaint;
-        private TextView cookID;
+        private TextView food;
+        private Button remove;
 
         public ViewHolder(View view) {
             super(view);
             // Define click listener for the ViewHolder's View
-
-            complaint = (TextView) view.findViewById(R.id.complain_text);
-            complaint.setOnClickListener(this);
-            cookID = (TextView) view.findViewById(R.id.complain_cook);
-            cookID.setOnClickListener(this);
+            food = (TextView) view.findViewById(R.id.menu_text);
+            remove = (Button) view.findViewById(R.id.remove);
+            remove.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-            if (complaintClickListener != null) complaintClickListener.onItemClick(view, getAdapterPosition());
+            if (removeClickListener != null) removeClickListener.onItemClick(view, getAdapterPosition());
         }
 
-        public TextView getComplaint() {
-            return complaint;
+        public TextView getFood() {
+            return food;
         }
-        public TextView getCook() {
-            return cookID;
+        public Button getRemove() {
+            return remove;
         }
     }
 
 
-    public ComplaintsAdaptor(ArrayList<String> dataSet,ArrayList<String> cooks) {
-        this.complaintSet = dataSet;
-        this.cookIDs  = cooks;
+    public MenuAdaptor(ArrayList<String> dataSet) {
+        this.menus = dataSet;
+        this.enable = true;
     }
 
     // Create new views (invoked by the layout manager)
@@ -55,7 +55,7 @@ public class ComplaintsAdaptor extends RecyclerView.Adapter<ComplaintsAdaptor.Vi
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         // Create a new view, which defines the UI of the list item
         View view = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.complaints_row, viewGroup, false);
+                .inflate(R.layout.menu_row, viewGroup, false);
 
         return new ViewHolder(view);
     }
@@ -66,29 +66,29 @@ public class ComplaintsAdaptor extends RecyclerView.Adapter<ComplaintsAdaptor.Vi
 
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
-        viewHolder.getComplaint().setText(getItem(position));
-        viewHolder.getCook().setText(getCook(position));
+        viewHolder.getFood().setText(getItem(position));
+        viewHolder.getRemove().setEnabled(enable);
     }
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return complaintSet.size();
+        return menus.size();
     }
 
     // convenience method for getting data at click position
     String getItem(int id) {
-        return complaintSet.get(id);
-    }
-    String getCook(int id) {
-        return cookIDs.get(id);
+        return menus.get(id);
     }
 
     // allows clicks events to be caught
     void setClickListener(ItemClickListener itemClickListener) {
-        this.complaintClickListener = itemClickListener;
+        this.removeClickListener = itemClickListener;
     }
+    public void setEnable(boolean enable){
+        this.enable=enable;
 
+    }
 
     // parent activity will implement this method to respond to click events
     public interface ItemClickListener {

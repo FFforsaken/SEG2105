@@ -25,7 +25,7 @@ public class WelcomeforAdmin extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-        }, 3000);
+        }, 1000);
     }
 
 
