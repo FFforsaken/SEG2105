@@ -31,6 +31,7 @@ public class CookMenu extends AppCompatActivity implements MenuAdaptor.ItemClick
     RecyclerView recyclerView;
     MenuAdaptor adapter;
     LinearLayoutManager layoutManager;
+    ArrayList<String> idList;
     boolean suspend;
 
 
@@ -41,6 +42,7 @@ public class CookMenu extends AppCompatActivity implements MenuAdaptor.ItemClick
         cookID = prefs.getString("CookID", "");
 //        Retrive list of menu
         listOfMenu = new ArrayList<String>();
+        idList = new ArrayList<String>();
 
         adapter = new MenuAdaptor(listOfMenu);
         adapter.setClickListener(this);
@@ -68,13 +70,15 @@ public class CookMenu extends AppCompatActivity implements MenuAdaptor.ItemClick
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 listOfMenu.clear();
+                idList.clear();
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
-                    listOfMenu.add(child.getKey());
+                    listOfMenu.add(child.getValue(String.class));
+                    idList.add(child.getKey());
                     Log.d("DB out",child.getKey());
                 }
-                adapter.notifyDataSetChanged();
+                setUpMenu();
             }
             @Override
             public void onCancelled(DatabaseError error) {
@@ -87,38 +91,24 @@ public class CookMenu extends AppCompatActivity implements MenuAdaptor.ItemClick
 
     @Override
     public void onItemClick(View view, int position) {
-        String menu = adapter.getItem(position);
-        databaseReference.child("Menu").child(cookID).child(menu).removeValue();
+        if(view.getId() == R.id.menu_text){
+            return;
+        }
+        String id = idList.get(position);
+        databaseReference.child("Menu").child(cookID).child(id).removeValue();
 //        ComplaintPop popUpClass = new ComplaintPop();
 //        popUpClass.showPopupWindow(view,listOfComplaints.get(position),listOfCooks.get(position),listOfClient.get(position),databaseReference);
         Toast.makeText(this, "You removed " + adapter.getItem(position), Toast.LENGTH_SHORT).show();
     }
 
-    public void refreshMenu(){
-        databaseReference.child("Menu").child(cookID).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                listOfMenu.clear();
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                for (DataSnapshot child : dataSnapshot.getChildren()) {
-                    listOfMenu.add(child.getKey());
-                    Log.d("DB out",child.getKey());
-                }
-                adapter.notifyDataSetChanged();
-            }
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w("DB expection", "Failed to read value.", error.toException());
-            }
-        });
-    }
+
 
     public void setUpMenu(){
         Button add = (Button) findViewById(R.id.addBtn);
+        add.setText("ADD MEAL");
+        findViewById(R.id.meal_text).setVisibility(View.INVISIBLE);
+        findViewById(R.id.meal_text).setEnabled(false);
         add.setEnabled(!suspend);
-        listOfMenu.clear();
         adapter.setEnable(!suspend);
         if(suspend){
             listOfMenu.clear();
@@ -126,7 +116,9 @@ public class CookMenu extends AppCompatActivity implements MenuAdaptor.ItemClick
             adapter.notifyDataSetChanged();
             return;
         }
-        refreshMenu();
+        else{
+            adapter.notifyDataSetChanged();
+        }
         add.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startActivity(new Intent(CookMenu.this,MenuList.class));

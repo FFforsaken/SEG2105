@@ -20,7 +20,7 @@
                     android:id="@+id/Menu_title"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
-                    android:text="Menu"
+                    android:text="Offered Meals List"
                     android:textAlignment="center"
                     android:textColor="@color/White"
                     android:textSize="34sp" />
@@ -42,10 +42,24 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/meal_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.7">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/menu_input"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Menu Name" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
                     <Button
                         android:id="@+id/addBtn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_weight="0.3"
                         android:text="ADD" />
                 </LinearLayout>
             </LinearLayout>

@@ -13,8 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class MenuAdaptor extends RecyclerView.Adapter<MenuAdaptor.ViewHolder>{
     private ArrayList<String> menus;
-    private ItemClickListener removeClickListener;
-    private boolean enable;
+    private ItemClickListener itemClickListener;
+    private boolean enable,clickable;
     /**
      * Provide a reference to the type of views that you are using
      * (custom ViewHolder).
@@ -29,11 +29,13 @@ public class MenuAdaptor extends RecyclerView.Adapter<MenuAdaptor.ViewHolder>{
             food = (TextView) view.findViewById(R.id.menu_text);
             remove = (Button) view.findViewById(R.id.remove);
             remove.setOnClickListener(this);
+            food.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-            if (removeClickListener != null) removeClickListener.onItemClick(view, getAdapterPosition());
+            if (itemClickListener != null)
+                itemClickListener.onItemClick(view, getAdapterPosition());
         }
 
         public TextView getFood() {
@@ -48,6 +50,7 @@ public class MenuAdaptor extends RecyclerView.Adapter<MenuAdaptor.ViewHolder>{
     public MenuAdaptor(ArrayList<String> dataSet) {
         this.menus = dataSet;
         this.enable = true;
+        this.clickable=true;
     }
 
     // Create new views (invoked by the layout manager)
@@ -67,6 +70,7 @@ public class MenuAdaptor extends RecyclerView.Adapter<MenuAdaptor.ViewHolder>{
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
         viewHolder.getFood().setText(getItem(position));
+        viewHolder.getFood().setClickable(clickable);
         viewHolder.getRemove().setEnabled(enable);
     }
 
@@ -83,10 +87,14 @@ public class MenuAdaptor extends RecyclerView.Adapter<MenuAdaptor.ViewHolder>{
 
     // allows clicks events to be caught
     void setClickListener(ItemClickListener itemClickListener) {
-        this.removeClickListener = itemClickListener;
+        this.itemClickListener = itemClickListener;
     }
     public void setEnable(boolean enable){
         this.enable=enable;
+
+    }
+    public void setClickable(boolean clickable){
+        this.clickable=clickable;
 
     }
 
