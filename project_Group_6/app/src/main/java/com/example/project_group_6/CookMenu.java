@@ -100,7 +100,29 @@ public class CookMenu extends AppCompatActivity implements MenuAdaptor.ItemClick
 //        popUpClass.showPopupWindow(view,listOfComplaints.get(position),listOfCooks.get(position),listOfClient.get(position),databaseReference);
         Toast.makeText(this, "You removed " + adapter.getItem(position), Toast.LENGTH_SHORT).show();
     }
+    public void refresh(){
+        databaseReference.child("Menu").child(cookID).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                listOfMenu.clear();
+                idList.clear();
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                for (DataSnapshot child : dataSnapshot.getChildren()) {
+                    listOfMenu.add(child.getValue(String.class));
+                    idList.add(child.getKey());
+                    Log.d("DB out",child.getKey());
+                }
+                setUpMenu();
+            }
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w("DB expection", "Failed to read value.", error.toException());
+            }
+        });
 
+    }
 
 
     public void setUpMenu(){
@@ -117,6 +139,7 @@ public class CookMenu extends AppCompatActivity implements MenuAdaptor.ItemClick
             return;
         }
         else{
+            refresh();
             adapter.notifyDataSetChanged();
         }
         add.setOnClickListener(new View.OnClickListener() {
