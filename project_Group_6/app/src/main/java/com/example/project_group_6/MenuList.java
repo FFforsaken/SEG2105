@@ -220,6 +220,8 @@ public class MenuList extends AppCompatActivity implements MenuAdaptor.ItemClick
         add.setText("ADD MENU");
         add.setEnabled(!suspend);
         if (suspend) {
+            findViewById(R.id.meal_text).setVisibility(View.INVISIBLE);
+            findViewById(R.id.meal_text).setEnabled(false);
             menuList.clear();
             menuList.add("You are suspended");
             adapter.notifyDataSetChanged();
