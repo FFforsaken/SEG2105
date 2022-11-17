@@ -94,6 +94,7 @@ public class CookMenu extends AppCompatActivity implements MenuAdaptor.ItemClick
         if(view.getId() == R.id.menu_text){
             return;
         }
+
         String id = idList.get(position);
         databaseReference.child("Menu").child(cookID).child(id).removeValue();
 //        ComplaintPop popUpClass = new ComplaintPop();
@@ -113,7 +114,6 @@ public class CookMenu extends AppCompatActivity implements MenuAdaptor.ItemClick
                     idList.add(child.getKey());
                     Log.d("DB out",child.getKey());
                 }
-                setUpMenu();
             }
             @Override
             public void onCancelled(DatabaseError error) {
