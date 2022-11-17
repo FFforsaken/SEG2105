@@ -122,11 +122,11 @@ public class LoginActivityCook extends AppCompatActivity {
                 if (dataSnapshot.hasChild(UserEntered_username)){
 
                     etUsername.setError(null);
-                    final boolean suspention = dataSnapshot.child(UserEntered_username).child("_suspend").getValue(boolean.class);
-                    if(suspention){
-                        etUsername.setError("Unable to login, Your account has been suspend");
-                        return;
-                    }
+//                    final boolean suspention = dataSnapshot.child(UserEntered_username).child("_suspend").getValue(boolean.class);
+//                    if(suspention){
+//                        etUsername.setError("Unable to login, Your account has been suspend");
+//                        return;
+//                    }
 
 
 
