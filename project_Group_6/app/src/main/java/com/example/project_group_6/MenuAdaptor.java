@@ -98,6 +98,8 @@ public class MenuAdaptor extends RecyclerView.Adapter<MenuAdaptor.ViewHolder>{
 
     }
 
+    public boolean getEnable(){return enable; }
+
     // parent activity will implement this method to respond to click events
     public interface ItemClickListener {
         void onItemClick(View view, int position);

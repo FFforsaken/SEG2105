@@ -27,7 +27,7 @@ public class Cook extends User {
         return this.suspend;
     }
 
-
+    public void set_suspend() { this.suspend = true;}
     // Short description of themselves
     public String toString(){
         return "Hi, im a cook and my name is " + get_first_name() + get_last_name() + ", i live at " + get_address() +".";
