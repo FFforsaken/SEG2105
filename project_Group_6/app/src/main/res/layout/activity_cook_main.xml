@@ -23,9 +23,9 @@
                 android:layout_height="634dp"
                 android:gravity="center"
                 android:orientation="vertical"
+                tools:ignore="MissingConstraints"
                 tools:layout_editor_absoluteX="-7dp"
-                tools:layout_editor_absoluteY="-16dp"
-                tools:ignore="MissingConstraints">
+                tools:layout_editor_absoluteY="-16dp">
 
 
                 <ImageView
@@ -53,10 +53,9 @@
                 <LinearLayout
                     android:layout_width="410dp"
                     android:layout_height="109dp"
-                    android:orientation="vertical"
-
                     android:background="@drawable/layout_bg"
-                    >
+
+                    android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -72,15 +71,25 @@
                             app:srcCompat="@drawable/icons96" />
 
                         <ImageView
-                            android:id="@+id/rating_icon"
-                            android:layout_width="wrap_content"
+                            android:id="@+id/imageView6"
+                            android:layout_width="110dp"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
                             android:layout_weight="1"
+                            app:srcCompat="@drawable/icons8_purchase_request" />
+
+                        <ImageView
+                            android:id="@+id/imageView8"
+                            :layout_weight="1"
+                            android:layout_width="106dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
                             app:srcCompat="@drawable/icons8" />
+
                     </LinearLayout>
 
                 </LinearLayout>
+
             </LinearLayout>
 
             <Button
