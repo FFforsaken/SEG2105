@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ProfileFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,7 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="here put the current Last name and Last name"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white" />
 
         <Space
             android:layout_width="match_parent"
@@ -37,8 +39,7 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:text="Last Name"
-            android:textColor="@color/white"
-            />
+            android:textColor="@color/white" />
 
         <Space
             android:layout_width="match_parent"
@@ -51,7 +52,7 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:text="First Name"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white" />
 
         <Space
             android:layout_width="match_parent"
@@ -86,7 +87,7 @@
             android:layout_width="match_parent"
             android:layout_height="38dp"
             android:text="put current Password"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white" />
 
         <Space
             android:layout_width="match_parent"
@@ -110,7 +111,7 @@
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:text="put current Address"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white" />
 
         <Space
             android:layout_width="match_parent"
@@ -125,20 +126,30 @@
             android:text="Address"
             android:textColor="@color/white" />
 
-        <Space
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="46dp" />
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/btn_update_p"
+                app:cornerRadius="28dp"
+                android:layout_width="213dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/purple_200"
+                android:text="Update"
+                />
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Update"
-            android:backgroundTint="@color/purple_200"
-            app:cornerRadius="28dp"/>
+            <Button
+                android:id="@+id/btn_logout_client"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Logout"
+                android:backgroundTint="@color/purple_200"
+                app:cornerRadius="28dp"/>
+
+        </LinearLayout>
+
     </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
