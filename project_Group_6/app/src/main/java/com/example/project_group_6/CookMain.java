@@ -25,6 +25,7 @@ public class CookMain extends AppCompatActivity {
         ImageView imgProfile = (ImageView) findViewById(R.id.Profile_ccok);
         btn_logout_cook = findViewById(R.id.btn_logout_cook);
         btn_menu = findViewById(R.id.btn_menu);
+
         btn_logout_cook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
