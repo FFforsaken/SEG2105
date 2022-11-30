@@ -40,23 +40,7 @@
                     android:layout_height="200dp"
                     android:layout_gravity="center"
                     android:orientation="horizontal"
-                    app:srcCompat="@drawable/administrator"><![CDATA[
-
-
-
-
-
-                />
-
-
-
-
-
-
-
-
-
-                ]]>
+                    app:srcCompat="@drawable/administrator"/>
 
                 <TextView
                     android:id="@+id/name_adm_main"
