@@ -4,19 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#A7E3FB"
     android:padding="10dp"
     tools:context=".RegisterClient">
+
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
         android:text="Sign in "
+        android:textColor="@color/black"
         android:textSize="40sp"
         android:textStyle="bold"
-        android:typeface="sans"
-        android:textColor="@color/black"
-        android:gravity="center_horizontal"
-         />
+        android:typeface="sans" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view"
@@ -24,12 +25,15 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/tv_title"
         android:layout_marginTop="20dp"
+        android:background="#FFFFFF"
+        android:backgroundTint="#A7E3FB"
         app:cardCornerRadius="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical" >
+            android:background="#C6EAF8"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -40,7 +44,7 @@
                     android:id="@+id/imageView11"
                     android:layout_width="52dp"
                     android:layout_height="52dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="20dp"
                     android:gravity="center_horizontal"
                     android:src="@drawable/user2_icon" />
 
@@ -48,7 +52,7 @@
                     android:id="@+id/et_firstname_client"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="20dp"
                     android:drawablePadding="10dp"
                     android:hint="First name"
                     android:inputType="textPersonName"
@@ -67,7 +71,7 @@
                     android:id="@+id/imageView24"
                     android:layout_width="52dp"
                     android:layout_height="52dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="20dp"
                     android:gravity="center_horizontal"
                     android:src="@drawable/user2_icon" />
 
@@ -75,7 +79,7 @@
                     android:id="@+id/et_lastname_client"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="20dp"
                     android:drawablePadding="10dp"
                     android:hint="Last name"
                     android:inputType="textPersonName"
@@ -93,7 +97,7 @@
                     android:id="@+id/imageView5"
                     android:layout_width="52dp"
                     android:layout_height="52dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="20dp"
                     android:gravity="center_horizontal"
                     android:src="@drawable/email_icon" />
 
@@ -101,7 +105,7 @@
                     android:id="@+id/et_useremail_cook"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="20dp"
                     android:drawablePadding="10dp"
                     android:hint="Email address"
                     android:inputType="textEmailAddress"
@@ -119,7 +123,7 @@
                     android:id="@+id/imageView23"
                     android:layout_width="52dp"
                     android:layout_height="52dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="20dp"
                     android:gravity="center_horizontal"
                     android:src="@drawable/password_icon" />
 
@@ -127,7 +131,7 @@
                     android:id="@+id/et_password_client"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="20dp"
                     android:drawablePadding="10dp"
                     android:hint="Password"
                     android:inputType="textPassword"
@@ -145,7 +149,7 @@
                     android:id="@+id/imageView22"
                     android:layout_width="52dp"
                     android:layout_height="52dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="20dp"
                     android:gravity="center_horizontal"
                     android:src="@drawable/card_icon" />
 
@@ -153,7 +157,7 @@
                     android:id="@+id/et_credit_card_number"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="20dp"
                     android:drawablePadding="10dp"
                     android:hint="Card Number"
                     android:inputType="number"
@@ -171,7 +175,6 @@
                     android:id="@+id/et_CVV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
                     android:layout_marginTop="18dp"
                     android:drawablePadding="10dp"
                     android:hint="Enter your CVV"
@@ -184,7 +187,6 @@
                     android:id="@+id/et_credit_card_expiration_date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
                     android:layout_marginTop="18dp"
                     android:drawablePadding="10dp"
                     android:hint="Expiration date: MM/YY"
@@ -196,16 +198,22 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="102dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="52dp"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center_horizontal"
+                    android:src="@drawable/home_icon" />
 
                 <EditText
                     android:id="@+id/et_address_client"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="20dp"
                     android:drawablePadding="10dp"
-
                     android:hint="Enter your address"
                     android:inputType="text"
                     android:padding="10dp"
@@ -243,7 +251,7 @@
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
-    </androidx.cardview.widget.CardView>
+</androidx.cardview.widget.CardView>
 
 
 </RelativeLayout>
