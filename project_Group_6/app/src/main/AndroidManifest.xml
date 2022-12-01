@@ -27,6 +27,7 @@
         <activity android:name=".WelcomeforCook"/>
         <activity android:name=".AdminComplaints"/>
         <activity android:name=".ComplaintPop"/>
+        <activity android:name=".activity_register_client"/>
         <activity android:name=".ClientMain"/>
         <activity android:name=".CookMenu"/>
         <activity android:name=".CookMain"/>
