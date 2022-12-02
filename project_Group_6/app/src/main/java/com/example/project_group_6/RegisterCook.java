@@ -24,6 +24,7 @@ public class RegisterCook extends AppCompatActivity  {
     private EditText et_address_cook;
     private EditText et_shortdiscription;
     private Boolean result;
+    private EditText et_cheque;
 
     DatabaseReference database_cook_account;
 
@@ -45,6 +46,7 @@ public class RegisterCook extends AppCompatActivity  {
         etLastname = findViewById(R.id.et_lastname_cook);
         et_address_cook = findViewById(R.id.et_address_cook);
         et_shortdiscription = findViewById(R.id.et_shortdiscription);
+        et_cheque = findViewById(R.id.et_cheque);
 
         btnRegister = findViewById(R.id.btn_register_cook);
         btnCancel = findViewById(R.id.btn_cancel_cook);
@@ -78,6 +80,7 @@ public class RegisterCook extends AppCompatActivity  {
         String Password = etPassword.getText().toString().trim();
         String address_cook = et_address_cook.getText().toString().trim();
         String shortdiscription = et_shortdiscription.getText().toString().trim();
+        String cheque = et_cheque.getText().toString().trim();
 
         etFirstname.setError(null);
         etLastname.setError(null);
@@ -85,6 +88,7 @@ public class RegisterCook extends AppCompatActivity  {
         etPassword.setError(null);
         et_address_cook.setError(null);
         et_shortdiscription.setError(null);
+        et_cheque.setError(null);
         ///////////////////////////////////////////////////////////////////////////////////////////
         if(Firstname.isEmpty()){
             etFirstname.setError("CANT BE EMPTY!");
@@ -118,6 +122,13 @@ public class RegisterCook extends AppCompatActivity  {
         }
         if(shortdiscription.isEmpty()){
             et_shortdiscription.setError("CANT BE EMPTY!");
+            et_shortdiscription.requestFocus();
+            result = false;
+            return;
+        }
+
+        if(cheque.isEmpty() || cheque.length() != 10){
+            et_cheque.setError("Invaild input try again");
             et_shortdiscription.requestFocus();
             result = false;
             return;
