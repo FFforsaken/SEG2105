@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:layout_centerVertical="true"
     android:layout_gravity="center"
-    android:background="@drawable/background2"
+    android:background="@drawable/bg_welcome"
     android:orientation="vertical">
 
     <Space
