@@ -192,7 +192,7 @@ public class MenuList extends AppCompatActivity implements MenuAdaptor.ItemClick
             databaseReference.child("Menu").child(cookID).child(String.valueOf(id+1)).setValue(food);
             id += 1;
             Toast.makeText(this, "Added " + adapter.getItem(position), Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(MenuList.this, CookMenu.class));
+            startActivity(new Intent(MenuList.this, CookMain.class));
         }
         else{
             String food = adapter.getItem(position);
@@ -213,11 +213,11 @@ public class MenuList extends AppCompatActivity implements MenuAdaptor.ItemClick
     public void refreshMenu() {
         adapter.setEnable(!suspend);
         TextView title = (TextView) findViewById(R.id.Menu_title);
-        title.setText("All Menu (Click to Add)");
+        title.setText("Menu (Click to Order)");
         findViewById(R.id.meal_text).setVisibility(View.VISIBLE);
         findViewById(R.id.meal_text).setEnabled(true);
         Button add = (Button) findViewById(R.id.addBtn);
-        add.setText("ADD MENU");
+        add.setText("Add To Menu");
         add.setEnabled(!suspend);
         if (suspend) {
             findViewById(R.id.meal_text).setVisibility(View.INVISIBLE);

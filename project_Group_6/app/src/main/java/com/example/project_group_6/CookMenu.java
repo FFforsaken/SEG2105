@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.SharedPreferences;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -127,7 +128,9 @@ public class CookMenu extends AppCompatActivity implements MenuAdaptor.ItemClick
 
     public void setUpMenu(){
         Button add = (Button) findViewById(R.id.addBtn);
-        add.setText("ADD MEAL");
+        TextView title = (TextView) findViewById(R.id.Menu_title);
+        title.setText("OFFERED MEALS");
+        add.setText("Back");
         findViewById(R.id.meal_text).setVisibility(View.INVISIBLE);
         findViewById(R.id.meal_text).setEnabled(false);
         add.setEnabled(!suspend);
@@ -144,7 +147,7 @@ public class CookMenu extends AppCompatActivity implements MenuAdaptor.ItemClick
         }
         add.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivity(new Intent(CookMenu.this,MenuList.class));
+                startActivity(new Intent(CookMenu.this,CookMain.class));
             }
         });
         }
