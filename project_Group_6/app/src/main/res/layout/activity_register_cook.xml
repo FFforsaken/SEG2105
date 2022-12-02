@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#A7E3FB"
+    android:background="#C6EAF8"
+    android:backgroundTint="#C6EAF8"
     android:padding="10dp"
     tools:context=".RegisterClient">
 
@@ -31,6 +32,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/Azure"
             android:orientation="vertical">
 
             <LinearLayout
