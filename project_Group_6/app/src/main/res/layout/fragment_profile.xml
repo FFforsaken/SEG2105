@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -15,7 +15,7 @@
         <TextView
             android:id="@+id/title_pro"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="74dp"
             android:text="Profile"
             android:textAlignment="center"
             android:textColor="@color/white"
@@ -30,7 +30,7 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="20dp" />
+            android:layout_height="wrap_content" />
 
         <EditText
             android:id="@+id/et_lastname_profile"
@@ -56,7 +56,7 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="44dp" />
+            android:layout_height="30dp" />
 
         <TextView
             android:id="@+id/text_email"
@@ -80,7 +80,7 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="45dp" />
+            android:layout_height="17dp" />
 
         <TextView
             android:id="@+id/text_Password"
@@ -104,7 +104,7 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="33dp" />
+            android:layout_height="23dp" />
 
         <TextView
             android:id="@+id/text_Address"
@@ -152,4 +152,4 @@
         </LinearLayout>
 
     </LinearLayout>
-</FrameLayout>
+</RelativeLayout>
