@@ -35,7 +35,7 @@ public class ComplaintPop {
 
     //PopupWindow display method
 
-    public void showPopupWindow(final View view, String complaint, String cook, String client, DatabaseReference databaseReference) {
+    public void showPopupWindow(final View view, String complaint, String cook, String id, DatabaseReference databaseReference) {
 
 
         //Create a View object yourself through inflater
@@ -64,7 +64,7 @@ public class ComplaintPop {
             @Override
             public void onClick(View v) {
                 //Remove value
-                databaseReference.child("complaints").child(cook).child(client).removeValue();
+                databaseReference.child("Complaints").child(id).removeValue();
                 popupWindow.dismiss();
             }
         });
@@ -76,7 +76,7 @@ public class ComplaintPop {
                 //suspend user
                 databaseReference.child("cook_accounts").child(cook).child("_suspend").setValue(true);
                 //Remove value
-                databaseReference.child("complaints").child(cook).child(client).removeValue();
+                databaseReference.child("Complaints").child(id).removeValue();
                 popupWindow.dismiss();
             }
         });

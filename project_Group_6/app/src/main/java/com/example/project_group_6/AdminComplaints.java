@@ -34,11 +34,20 @@ public class AdminComplaints extends AppCompatActivity implements ComplaintsAdap
         ArrayList<String> listOfComplaints;
         ArrayList<String> listOfCooks;
         ArrayList<String> listOfClient;
-
+        ArrayList<String> listOfID;
         //DEFINING A STRING ADAPTER WHICH WILL HANDLE THE DATA OF THE LISTVIEW
         ComplaintsAdaptor adapter;
         LinearLayoutManager layoutManager;
         DatabaseReference databaseReference;
+
+    public static class Complain {
+
+        public String client;
+        public String cook;
+        public String content;
+        public Complain(){}
+
+    }
 
 
         protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +58,7 @@ public class AdminComplaints extends AppCompatActivity implements ComplaintsAdap
             listOfComplaints = new ArrayList<String>();
             listOfCooks =  new ArrayList<String>();
             listOfClient = new ArrayList<String>();
+            listOfID = new ArrayList<String>();
             // set up the RecyclerView
             recyclerView = findViewById(R.id.ListofComplaints);
             layoutManager = new LinearLayoutManager(this);
@@ -68,21 +78,23 @@ public class AdminComplaints extends AppCompatActivity implements ComplaintsAdap
 
 //            setUpComplaints();
             // Read from the database
-            databaseReference.child("complaints").addValueEventListener(new ValueEventListener() {
+            databaseReference.child("Complaints").addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     listOfComplaints.clear();
+                    listOfID.clear();
+                    listOfCooks.clear();
+                    listOfClient.clear();
+
                     // This method is called once with the initial value and again
                     // whenever data at this location is updated.
                     for (DataSnapshot child : dataSnapshot.getChildren()) {
-                        String cook = child.getKey();
-                        for(DataSnapshot c : child.getChildren()){
-                            listOfComplaints.add(c.getValue(String.class));
-                            listOfCooks.add(cook);
-                            listOfClient.add(c.getKey());
-                            Log.d("DB out",cook);
-                            Log.d("DB out",c.getValue(String.class));
-                        }
+                        String id = child.getKey();
+                        Complain c = child.getValue(Complain.class);
+                        listOfID.add(id);
+                        listOfClient.add(c.client);
+                        listOfCooks.add(c.cook);
+                        listOfComplaints.add(c.content);
                     }
                     adapter.notifyDataSetChanged();
                 }
@@ -101,7 +113,7 @@ public class AdminComplaints extends AppCompatActivity implements ComplaintsAdap
     public void onItemClick(View view, int position) {
 
         ComplaintPop popUpClass = new ComplaintPop();
-        popUpClass.showPopupWindow(view,listOfComplaints.get(position),listOfCooks.get(position),listOfClient.get(position),databaseReference);
+        popUpClass.showPopupWindow(view,listOfComplaints.get(position),listOfCooks.get(position),listOfID.get(position),databaseReference);
 //        Toast.makeText(this, "You clicked " + adapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
     }
 }

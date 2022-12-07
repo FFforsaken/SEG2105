@@ -43,10 +43,6 @@ public class ClientMain extends AppCompatActivity {
                     break;
             }
 
-
-
-
-
             return true;
         });
 
