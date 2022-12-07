@@ -14,6 +14,7 @@ public class CookMain extends AppCompatActivity {
     Button btn_logout_cook;
     Button btn_menu;
     Button btnOfferedMealsList;
+    ImageView profileButton;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +28,7 @@ public class CookMain extends AppCompatActivity {
         btn_logout_cook = findViewById(R.id.btn_logout_cook);
         btn_menu = findViewById(R.id.btn_menu);
         btnOfferedMealsList = findViewById(R.id.btn_offered_meals_list);
+        profileButton = findViewById(R.id.image_purchase_request);
 
         btn_logout_cook.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +57,13 @@ public class CookMain extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(CookMain.this,CookMenu.class);
+                startActivity(intent);
+            }
+        });
+        profileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CookMain.this,CookOrder.class);
                 startActivity(intent);
             }
         });

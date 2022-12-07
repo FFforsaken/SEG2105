@@ -24,16 +24,16 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/Complaints_title"
+                    android:id="@+id/Orders_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="List of Complaints"
+                    android:text="List of Orders"
                     android:textAlignment="center"
                     android:textColor="#FFFFFF"
                     android:textSize="34sp" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/ListofComplaints"
+                    android:id="@+id/ListofOrders"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
 

@@ -23,9 +23,8 @@
             android:id="@+id/text_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="here put the current Last name and Last name"
-            android:textColor="@color/white"
-            />
+            android:text="Your current rating"
+            android:textColor="@color/white" />
 
         <TextView
             android:id="@+id/text_rating"
@@ -38,6 +37,14 @@
         <Space
             android:layout_width="match_parent"
             android:layout_height="34dp" />
+
+        <TextView
+            android:id="@+id/text_last"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Last Name"
+            android:textColor="@color/white"
+            android:textSize="20dp" />
 
         <EditText
             android:id="@+id/et_lastname_profile"
@@ -52,6 +59,14 @@
         <Space
             android:layout_width="match_parent"
             android:layout_height="20dp" />
+
+        <TextView
+            android:id="@+id/text_first"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="First Name"
+            android:textColor="@color/white"
+            android:textSize="20dp" />
 
         <EditText
             android:id="@+id/et_firstname_profile"
@@ -70,12 +85,9 @@
             android:id="@+id/text_email"
             android:layout_width="match_parent"
             android:layout_height="38dp"
-            android:text="put current email"
-            android:textColor="@color/white" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:text="Email"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
 
         <EditText
             android:id="@+id/et_username_profile"
@@ -94,12 +106,9 @@
             android:id="@+id/text_Password"
             android:layout_width="match_parent"
             android:layout_height="38dp"
-            android:text="put current Password"
-            android:textColor="@color/white"/>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:text="Password"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
 
         <EditText
             android:id="@+id/et_password_profile"
@@ -118,12 +127,9 @@
             android:id="@+id/text_Address"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:text="put current Address"
-            android:textColor="@color/white"/>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:text="Address"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
 
         <EditText
             android:id="@+id/et_address_profile"

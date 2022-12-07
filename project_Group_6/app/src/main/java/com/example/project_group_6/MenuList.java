@@ -47,7 +47,6 @@ public class MenuList extends AppCompatActivity implements MenuAdaptor.ItemClick
 
         adapter = new MenuAdaptor(menuList);
         adapter.setClickListener(this);
-        adapter.setClickListener(this);
 
         recyclerView = findViewById(R.id.listOfMenu);
         layoutManager = new LinearLayoutManager(this);

@@ -141,6 +141,7 @@ public class RegisterCook extends AppCompatActivity  {
         String username = cook.get_user_name();
 
         database_cook_account.child(username).setValue(cook);
+        database_cook_account.child(username).child("_rating").setValue(0);
 
         etFirstname.setText("");
         etLastname.setText("");

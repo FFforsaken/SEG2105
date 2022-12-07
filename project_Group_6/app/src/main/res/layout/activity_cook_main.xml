@@ -26,7 +26,7 @@
             android:id="@+id/Welcome"
             android:layout_width="83dp"
             android:layout_height="34dp"
-            android:text="Name"
+            android:text="Welcom"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="20dp" />
@@ -35,7 +35,6 @@
             android:id="@+id/text_cook"
             android:layout_width="93dp"
             android:layout_height="29dp"
-            android:text="Cook account"
             android:textColor="@color/white" />
 
         <LinearLayout

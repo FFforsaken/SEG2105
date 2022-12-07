@@ -25,7 +25,6 @@ public class LoginActivityAdmin extends AppCompatActivity {
     private EditText etPassword;
 
 
-
     DatabaseReference databaseReference;
 
     protected void onCreate(Bundle savedInstanceState) {
