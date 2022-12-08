@@ -2,6 +2,7 @@ package com.example.project_group_6;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -33,6 +34,8 @@ public class CookMain extends AppCompatActivity {
         btn_logout_cook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                SharedPreferences prefs = getSharedPreferences("UserID", MODE_PRIVATE);
+                prefs.edit().remove("CookID").commit();
                 Intent intent = new Intent(CookMain.this, SelectToLogin.class);
                 startActivity(intent);
             }
