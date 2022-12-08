@@ -35,6 +35,7 @@ public class MenuList extends AppCompatActivity implements MenuAdaptor.ItemClick
     LinearLayoutManager layoutManager;
     ArrayList<String> listOfMenu;
     int id;
+    int menuId;
     boolean suspend;
 
 
@@ -68,7 +69,8 @@ public class MenuList extends AppCompatActivity implements MenuAdaptor.ItemClick
                     CookMenu.Menu cur = new CookMenu.Menu();
                     cur.name = food;
                     cur.type=type;
-                    databaseReference.child("MenuList").child(cookID).child(String.valueOf(id+1)).setValue(cur);
+                    databaseReference.child("MenuList").child(cookID).child(String.valueOf(menuId+1)).setValue(cur);
+                    Log.d("Click", "id"+id);
                     Toast.makeText(v.getContext(), "Added " + food + "To Menu", Toast.LENGTH_SHORT).show();
                     nameInput.setText("");
                     typeInput.setText("");
@@ -105,6 +107,7 @@ public class MenuList extends AppCompatActivity implements MenuAdaptor.ItemClick
                 menuList.clear();
                 typeList.clear();
                 idList.clear();
+                menuId = 0;
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
@@ -112,6 +115,9 @@ public class MenuList extends AppCompatActivity implements MenuAdaptor.ItemClick
                     menuList.add(cur.name);
                     typeList.add(cur.type);
                     idList.add(child.getKey());
+                    if(menuId <  Integer.parseInt(child.getKey())){
+                        menuId = Integer.parseInt(child.getKey());
+                    }
 //                    idList.add(child.getKey());
                     Log.d("DB out",child.getKey());
                 }
@@ -184,6 +190,7 @@ public class MenuList extends AppCompatActivity implements MenuAdaptor.ItemClick
                 menuList.clear();
                 typeList.clear();
                 idList.clear();
+                menuId = 0;
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
@@ -192,6 +199,9 @@ public class MenuList extends AppCompatActivity implements MenuAdaptor.ItemClick
                     typeList.add(cur.type);
                     idList.add(child.getKey());
                     Log.d("DB out",child.getKey());
+                    if(menuId <  Integer.parseInt(child.getKey())){
+                        menuId = Integer.parseInt(child.getKey());
+                    }
                 }
                 adapter.notifyDataSetChanged();
             }
@@ -220,9 +230,9 @@ public class MenuList extends AppCompatActivity implements MenuAdaptor.ItemClick
         }
         else{
             String food = adapter.getItem(position);
-            String id = idList.get(position);
+            String curId = idList.get(position);
             if(!listOfMenu.contains(food)){
-                databaseReference.child("MenuList").child(cookID).child(id).removeValue();
+                databaseReference.child("MenuList").child(cookID).child(curId).removeValue();
             }
             else{
                 Toast.makeText(this, "Unable to remove " + food + "as it is in current offer", Toast.LENGTH_SHORT).show();
@@ -238,7 +248,7 @@ public class MenuList extends AppCompatActivity implements MenuAdaptor.ItemClick
     public void refreshMenu() {
         adapter.setEnable(!suspend);
         TextView title = (TextView) findViewById(R.id.Menu_title);
-        title.setText("Menu (Click to Order)");
+        title.setText("Menu (Click to Offer)");
         findViewById(R.id.meal_text).setVisibility(View.VISIBLE);
         findViewById(R.id.meal_text).setEnabled(true);
         findViewById(R.id.type_text).setVisibility(View.VISIBLE);

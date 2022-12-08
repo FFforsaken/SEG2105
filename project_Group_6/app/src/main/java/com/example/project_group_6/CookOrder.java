@@ -23,6 +23,7 @@ public class CookOrder extends AppCompatActivity implements OrderAdaptor.ItemCli
     String cookID;
     DatabaseReference databaseReference;
     ArrayList<String> orders;
+    ArrayList<String> types;
     ArrayList<String> clients;
     ArrayList<String> allIds;
     RecyclerView recyclerView;
@@ -34,9 +35,11 @@ public class CookOrder extends AppCompatActivity implements OrderAdaptor.ItemCli
         public String client;
         public String cook;
         public String meal;
+        public String type;
         public Boolean complete;
         public Boolean accept;
         public Double rating;
+        public Boolean decline;
         public Order(){}
 
     }
@@ -53,6 +56,7 @@ public class CookOrder extends AppCompatActivity implements OrderAdaptor.ItemCli
         orders = new ArrayList<String>();
         clients = new ArrayList<String>();
         allIds = new ArrayList<String>();
+        types = new ArrayList<String>();
 
 
         adapter = new OrderAdaptor(orders,clients);
@@ -71,9 +75,10 @@ public class CookOrder extends AppCompatActivity implements OrderAdaptor.ItemCli
 
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
                     Order curOrder = child.getValue(Order.class);
-                    if(cookID.equals(curOrder.cook) && !curOrder.accept){
+                    if(cookID.equals(curOrder.cook) && !curOrder.accept&&!curOrder.decline){
                         Log.d("DB out",curOrder.meal);
                         orders.add(curOrder.meal);
+                        types.add(curOrder.type);
                         clients.add(curOrder.client);
                         allIds.add(child.getKey());
                         Log.d("DB out",(curOrder.accept).toString());
@@ -96,16 +101,20 @@ public class CookOrder extends AppCompatActivity implements OrderAdaptor.ItemCli
     public void onItemClick(View view, int position) {
         String id = allIds.get(position);
         String meal = orders.get(position);
+        String type = types.get(position);
         Log.d("click","data click");
         Log.d("click","data click" + view.getId());
         if(view.getId() == R.id.order_accept) {
-            databaseReference.child("Menu").child(cookID).child(id).setValue(meal);
+            CookMenu.Menu cur = new CookMenu.Menu();
+//            cur.name = meal;
+//            cur.type = type;
+//            databaseReference.child("Menu").child(cookID).child(id).setValue(cur);
             databaseReference.child("Orders").child(id).child("accept").setValue(true);
             Log.d("click","data click");
         }
         else{
             if(view.getId() == R.id.order_decline) {
-                databaseReference.child("Orders").child(id).removeValue();
+                databaseReference.child("Orders").child(id).child("decline").setValue(true);
             }
 
         }
