@@ -89,6 +89,7 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 // update the information
+
             }
         });
 

@@ -74,27 +74,13 @@
                 android:id="@+id/meal_text_client"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.7">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/menu_input_client"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Menu Name" />
-            </com.google.android.material.textfield.TextInputLayout>
+                android:layout_weight="0.7"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/meal_type_text_client"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="0.7">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/menu_type_input_client"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Meal Type" />
-            </com.google.android.material.textfield.TextInputLayout>
+                android:layout_weight="0.7"/>
 
             <Button
                 android:id="@+id/addBtn"
