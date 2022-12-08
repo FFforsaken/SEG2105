@@ -11,13 +11,13 @@
         android:layout_weight="0.7"
         android:text="TextView"
         android:textColor="#FFFFFF"
-        android:textSize="20sp" />
+        android:textSize="16sp" />
 
     <Button
         android:id="@+id/btn_rate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="0.3"
-        android:text="Remove" />
+        android:text="Rate" />
 
 </LinearLayout>

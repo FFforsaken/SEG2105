@@ -1,6 +1,7 @@
 package com.example.project_group_6;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -123,6 +124,10 @@ public class LoginActivityClient extends AppCompatActivity {
 
                     if (getPasswordfromDB.equals(UserEntered_password)){
                         etPassword.setError(null);
+                        SharedPreferences prefs = getSharedPreferences("UserID", MODE_PRIVATE);
+                        SharedPreferences.Editor editor = prefs.edit();
+                        editor.putString("ClientID", UserEntered_username);
+                        editor.commit();
                         Intent intent = new Intent(LoginActivityClient.this, WelcomeforClient.class);
                         startActivity(intent);
                         finish();

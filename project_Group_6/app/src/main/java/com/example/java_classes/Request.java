@@ -3,7 +3,7 @@ package com.example.java_classes;
 import com.example.project_group_6.MenuAdaptor;
 
 public class Request {
-    private MenuAdaptor meal;
+    public MenuAdaptor meal;
     private Status status;
 
     public Request() {

@@ -6,12 +6,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-
 import androidx.recyclerview.widget.RecyclerView;
 
-public class MenuAdaptor extends RecyclerView.Adapter<MenuAdaptor.ViewHolder>{
-    private ArrayList<String> menus;
+import java.util.ArrayList;
+
+public class PurchasesAdaptor extends RecyclerView.Adapter<PurchasesAdaptor.ViewHolder>{
+    private ArrayList<String> orders;
+    private ArrayList<String> status;
     private ItemClickListener itemClickListener;
     private boolean enable,clickable;
     /**
@@ -19,16 +20,15 @@ public class MenuAdaptor extends RecyclerView.Adapter<MenuAdaptor.ViewHolder>{
      * (custom ViewHolder).
      */
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private TextView food;
-        private Button remove;
+        private TextView purchase;
+        private Button rate;
 
         public ViewHolder(View view) {
             super(view);
             // Define click listener for the ViewHolder's View
-            food = (TextView) view.findViewById(R.id.purchase_text);
-            remove = (Button) view.findViewById(R.id.btn_rate);
-            remove.setOnClickListener(this);
-            food.setOnClickListener(this);
+            purchase = (TextView) view.findViewById(R.id.purchase_text);
+            rate = view.findViewById(R.id.btn_rate);
+
         }
 
         @Override
@@ -37,19 +37,18 @@ public class MenuAdaptor extends RecyclerView.Adapter<MenuAdaptor.ViewHolder>{
                 itemClickListener.onItemClick(view, getAdapterPosition());
         }
 
-        public TextView getFood() {
-            return food;
+        public TextView getPurchase() {
+            return purchase;
         }
-        public Button getRemove() {
-            return remove;
+        public Button getRate() {
+            return rate;
         }
     }
 
 
-    public MenuAdaptor(ArrayList<String> dataSet) {
-        this.menus = dataSet;
-        this.enable = true;
-        this.clickable=true;
+    public PurchasesAdaptor(ArrayList<String> orders,ArrayList<String> status) {
+        this.orders = orders;
+        this.status = status;
     }
 
     // Create new views (invoked by the layout manager)
@@ -57,7 +56,7 @@ public class MenuAdaptor extends RecyclerView.Adapter<MenuAdaptor.ViewHolder>{
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         // Create a new view, which defines the UI of the list item
         View view = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.menu_row, viewGroup, false);
+                .inflate(R.layout.purchase_row, viewGroup, false);
 
         return new ViewHolder(view);
     }
@@ -65,44 +64,41 @@ public class MenuAdaptor extends RecyclerView.Adapter<MenuAdaptor.ViewHolder>{
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int position) {
-
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
-        viewHolder.getFood().setText(getItem(position));
-        viewHolder.getFood().setClickable(clickable);
-        viewHolder.getRemove().setEnabled(enable);
+        viewHolder.getPurchase().setText(getOrderItem(position));
+        if(getStatus(position).equals("false")){
+            viewHolder.getRate().setEnabled(false);
+        }
+        else {
+            viewHolder.getRate().setEnabled(true);
+        }
+
     }
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return menus.size();
+        return orders.size();
     }
 
     // convenience method for getting data at click position
-    String getItem(int id) {
-        return menus.get(id);
+    String getOrderItem(int id) {
+        return orders.get(id);
+    }
+
+    String getStatus(int id) {
+        return status.get(id);
     }
 
     // allows clicks events to be caught
     void setClickListener(ItemClickListener itemClickListener) {
         this.itemClickListener = itemClickListener;
     }
-    public void setEnable(boolean enable){
-        this.enable=enable;
-
-    }
-    public void setClickable(boolean clickable){
-        this.clickable=clickable;
-
-    }
-
-    public boolean getEnable(){return enable; }
 
     // parent activity will implement this method to respond to click events
     public interface ItemClickListener {
         void onItemClick(View view, int position);
     }
-
 
 }

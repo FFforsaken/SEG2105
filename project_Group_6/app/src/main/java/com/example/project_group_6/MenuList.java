@@ -6,12 +6,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -216,7 +214,7 @@ public class MenuList extends AppCompatActivity implements MenuAdaptor.ItemClick
 
     @Override
     public void onItemClick(View view, int position) {
-        if(view.getId() == R.id.menu_text) {
+        if(view.getId() == R.id.purchase_text) {
             String food = adapter.getItem(position);
             String type = typeList.get(position);
             CookMenu.Menu cur = new CookMenu.Menu();

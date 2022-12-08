@@ -100,7 +100,7 @@ public class Cook_profile extends AppCompatActivity {
                 databaseReference.child("cook_accounts").child(cookID).child("_account_password").setValue(password.getText().toString());
                 databaseReference.child("cook_accounts").child(cookID).child("_address").setValue(address.getText().toString());
                 databaseReference.child("cook_accounts").child(cookID).child("_email_address").setValue(email.getText().toString());
-
+                Toast.makeText(getApplicationContext(),"Update succeed",Toast. LENGTH_SHORT).show();
             }
         });
 

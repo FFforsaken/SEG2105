@@ -99,7 +99,7 @@ public class CookMenu extends AppCompatActivity implements MenuAdaptor.ItemClick
 
     @Override
     public void onItemClick(View view, int position) {
-        if(view.getId() == R.id.menu_text){
+        if(view.getId() == R.id.purchase_text){
             return;
         }
 
